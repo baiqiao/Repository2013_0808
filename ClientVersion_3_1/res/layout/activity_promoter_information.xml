@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/promoterinfo_bg"
+    android:orientation="vertical" >
+    
+	
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:background="@color/white">
+
+		<ImageButton
+		    android:id="@+id/title_pinfo_ibtn_back"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_centerVertical="true"
+		    android:background="#00000000"
+		    android:layout_marginLeft="5dp"
+		    android:src="@drawable/title_ibtn_back" />
+
+		<TextView
+		    android:id="@+id/promoterinfo_title_username"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:layout_centerVertical="true"
+		    android:textSize="22sp"
+		    android:textColor="@color/pink"
+		    android:text="一千只猫和玫瑰" />
+	    
+	</RelativeLayout>
+	<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/divider_horizontal_line" >
+   	</LinearLayout>
+   	
+	<ScrollView 
+	    android:id="@+id/promoterinfo_scr"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	    
+	    <RelativeLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+	        
+	        <RelativeLayout 
+	            android:id="@+id/rl1"
+			    android:layout_width="fill_parent"
+			    android:layout_height="90dp"
+			    android:paddingLeft="12dp">
+		
+				<ImageView
+				    android:id="@+id/iv_userhead"
+				    android:layout_width="80dp"
+				    android:layout_height="80dp"
+				    android:layout_alignParentLeft="true"
+				    android:layout_alignParentBottom="true"
+				    android:src="@drawable/detailsopt_topiv1" />
+		
+				<TextView
+				    android:id="@+id/textView1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentBottom="true"
+				    android:layout_marginBottom="8dp"
+				    android:layout_marginLeft="12dp"
+				    android:ems="2"
+				    android:textSize="16sp"
+				    android:layout_toRightOf="@+id/iv_userhead"
+				    android:text="详细信息" />
+		
+				
+				<LinearLayout 
+				    android:id="@+id/l1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="15dp"
+				    android:layout_marginBottom="8dp"
+				    android:layout_alignParentBottom="true"
+				    android:orientation="vertical"
+				    
+				    android:layout_toRightOf="@+id/textView1">
+		
+					<TextView
+					    android:id="@+id/promoterinfo_attention_num"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_gravity="center_horizontal"
+					    android:textSize="16sp"
+					    android:text="9" />
+		
+					<TextView
+					    android:id="@+id/textView4"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:textSize="16sp"
+					    android:text="关注" />
+				    
+				</LinearLayout>
+				
+				<LinearLayout 
+				    android:id="@+id/l2"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="8dp"
+				    android:layout_marginBottom="8dp"
+				    android:layout_alignParentBottom="true"
+				    android:background="@drawable/common_title_bg"
+				    android:orientation="horizontal"
+				    android:layout_toRightOf="@+id/l1">
+		
+				    
+				</LinearLayout>
+				
+				<LinearLayout 
+				    android:id="@+id/l3"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="8dp"
+				    android:layout_marginBottom="8dp"
+				    android:layout_alignParentBottom="true"
+				    android:orientation="vertical"
+				    android:layout_toRightOf="@+id/l2">
+		
+					<TextView
+					    android:id="@+id/promoterinfo_share_num"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:textSize="16sp"
+					    android:layout_gravity="center_horizontal"
+					    android:text="7" />
+		
+					<TextView
+					    android:id="@+id/textView4"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:textSize="16sp"
+					    android:text="分享" />
+				    
+				</LinearLayout>
+				
+				<LinearLayout 
+				    android:id="@+id/l4"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="8dp"
+				    android:layout_marginBottom="8dp"
+				    android:layout_alignParentBottom="true"
+				    android:orientation="vertical"
+				    android:background="@drawable/common_title_bg"
+				    android:layout_toRightOf="@+id/l3">
+		
+				    
+				</LinearLayout>
+				
+				<LinearLayout 
+				    android:id="@+id/l5"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="8dp"
+				    android:layout_marginBottom="8dp"
+				    android:layout_alignParentBottom="true"
+				    android:orientation="vertical"
+				    android:layout_toRightOf="@+id/l4">
+		
+					<TextView
+					    android:id="@+id/promoterinfo_recommend_num"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:textSize="16sp"
+					    android:layout_gravity="center_horizontal"
+					    android:text="5" />
+		
+					<TextView
+					    android:id="@+id/textView4"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:textSize="16sp"
+					    android:text="推荐" />
+				    
+				</LinearLayout>
+			    
+			</RelativeLayout>
+			
+			<RelativeLayout 
+			    android:id="@+id/rl2"
+			    android:layout_width="fill_parent"
+			    android:layout_height="120dp"
+			    android:layout_marginLeft="12dp"
+			    android:layout_marginRight="12dp"
+			    android:layout_below="@+id/rl1"
+			    android:background="@drawable/promoterinfo_details_supportbg">
+		
+				<ImageButton
+				    android:id="@+id/promoterinfo_details_iv_wpmsg"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentRight="true"
+				    android:layout_alignParentTop="true"
+				    android:layout_marginRight="30dp"
+				    android:layout_marginTop="5dp"
+				    android:background="#00000000"
+				    android:src="@drawable/prominfo_writepersonalmsg" />
+		
+				<TextView
+				    android:id="@+id/textView5"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentRight="true"
+				    android:layout_marginRight="25dp"
+				    android:layout_below="@+id/promoterinfo_details_iv_wpmsg"
+				    android:text="写私信" />
+		
+				<TextView
+				    android:id="@+id/promoterinfo_details_username"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentLeft="true"
+				    android:layout_alignParentTop="true"
+				    android:layout_marginTop="8dp"
+				    android:textSize="18sp"
+				    android:text="一千只猫和玫瑰" />
+		
+				<TextView
+				    android:id="@+id/promoterinfo_details_profile"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentLeft="true"
+				    android:layout_below="@+id/promoterinfo_details_username"
+				    android:layout_marginTop="15dp"
+				    android:layout_marginLeft="5dp"
+				    android:ems="8"
+				    android:textSize="14sp"
+				    android:text="有生之年狭路相逢终不能幸免" />
+		
+				<TextView
+				    android:id="@+id/promoterinfo_details_supportinfo"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentBottom="true"
+				    android:layout_alignParentLeft="true"
+				    android:layout_marginLeft="20dp"
+				    android:layout_marginBottom="8dp"
+				    android:textSize="18sp"
+				    android:text="支持的项目(2)" />
+		
+				<TextView
+				    android:id="@+id/promoterinfo_details_initiateinfo"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignParentBottom="true"
+				    android:layout_alignParentRight="true"
+				    android:textSize="18sp"
+				    android:layout_marginRight="20dp"
+				    android:layout_marginBottom="8dp"
+				    android:text="发起的项目(0)" />
+			    
+			</RelativeLayout>
+			
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_below="@+id/rl2">
+		
+				<ListView
+				    android:id="@+id/promoterinfo_list"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content" >
+				</ListView>
+			    
+			</LinearLayout>
+	        
+	    </RelativeLayout>
+	    
+	</ScrollView>
+   	
+</LinearLayout>

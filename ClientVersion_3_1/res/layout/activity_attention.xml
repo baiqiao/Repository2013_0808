@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+    <RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:background="@color/white">
+
+		<ImageButton
+		    android:id="@+id/title_attention_ibtn_back"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_centerVertical="true"
+		    android:background="#00000000"
+		    android:layout_marginLeft="8dp"
+		    android:src="@drawable/title_ibtn_back" />
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:layout_centerVertical="true"
+		    android:textSize="22sp"
+		    android:textColor="@color/pink"
+		    android:text="+关注" />
+	    
+	</RelativeLayout>
+	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/divider_horizontal_line" >
+   	</LinearLayout>
+   	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ListView
+            android:id="@+id/attention_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+        
+    </LinearLayout>
+	
+    
+</LinearLayout>

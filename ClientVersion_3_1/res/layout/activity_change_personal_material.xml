@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personal_setting_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_bg_unselect"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp" >
+
+            <ImageButton
+                android:id="@+id/title_perset_ibtn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/selector_top_button"
+                android:src="@drawable/title_ibtn_back" />
+
+            <TextView
+                android:id="@+id/title_perset_tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/changepersonalmaterial"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/divider_horizontal_line"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/change_personal_materal_headgraph" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/perset_tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="jxnkl"
+                    android:textSize="18sp" />
+
+                <Switch
+                    android:id="@+id/change_switch_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:checked="true"
+                    android:textOff="女"
+                    android:textOn="男" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="@string/personalintroduce"
+            android:textColor="@color/color_qianhui"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/left_bg_unselect"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/othermaterial"
+        android:textColor="@color/color_qianhui"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/left_bg_unselect"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+            
+            <TextView 
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/liveaddress"
+	            android:textColor="@color/color_qianhui"
+	            android:layout_marginLeft="10dp"
+        		android:textSize="20sp" />
+            
+            <Button 
+                android:id="@+id/change_btn_liveaddress"
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/unsetting"
+	            android:background="@drawable/selector_top_button"
+	            android:textSize="22sp"
+	            android:layout_marginLeft="30dp"/>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+            
+            <TextView 
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/workaddress"
+	            android:textColor="@color/color_qianhui"
+	            android:layout_marginLeft="10dp"
+        		android:textSize="20sp" />
+            
+            <Button 
+                android:id="@+id/change_btn_workaddress"
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/unsetting"
+	            android:background="@drawable/selector_top_button"
+	            android:textSize="22sp"
+	            android:layout_marginLeft="30dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

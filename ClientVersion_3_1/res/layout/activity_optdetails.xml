@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+        <ImageButton
+            android:id="@+id/optdetails_ibtn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="8dp"
+            android:background="#00000000"
+            android:src="@drawable/title_ibtn_back" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:background="#00000000"
+            android:src="@drawable/optdetails_title_ibtn_editbg" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/optdetails_ibtn_back"
+            android:layout_centerHorizontal="true"
+            android:text="当代艺术驻地创作项目"
+            android:textColor="@color/pink"
+            android:textSize="18sp" />
+        
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/divider_horizontal_line" >
+   	</LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+    	android:layout_marginRight="8dp"
+        android:orientation="vertical">
+        
+        <include layout="@layout/optdetails_top_item"></include>
+    
+    	<include layout="@layout/optdetails_second"></include>
+    	
+    </LinearLayout>
+    
+
+</LinearLayout>

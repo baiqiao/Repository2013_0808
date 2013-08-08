@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClientVersion_3</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="supportopt">支持的项目</string>
+    <string name="discussopt">评论的项目</string>
+    <string name="shareopt">分享的项目</string>
+    <string name="attentionopt">关注的项目</string>
+    <string name="recommendopt">推荐的项目</string>
+    <string name="supportoptnum">6</string>
+    <string name="discussoptnum">5</string>
+    <string name="shareoptnum">22</string>
+    <string name="attentionoptnum">6</string>
+    <string name="recommendoptnum">5</string>
+    <string name="personalsetting">个人设置</string>
+    <string name="accountsetting">账号设置</string>
+    <string name="financialmanagement">财务管理</string>
+    <string name="recharge">充值</string>
+    <string name="amountofpay">支付金额</string>
+    <string name="waytopay">支付方式：</string>
+    <string name="suretopay">确认支付</string>
+    <string name="exit">退出</string>
+    <string name="classification">分类</string>
+    <string name="recommendedopt">推荐项目</string>
+    <string name="hotopt">热门项目</string>
+    <string name="newopt">最新项目</string>
+    <string name="willtofinish">即将结束</string>
+    <string name="designopt">设计</string>
+    <string name="scienceopt">科学</string>
+    <string name="publishopt">出版</string>
+    <string name="movieopt">影视</string>
+    <string name="comicopt">动漫</string>
+    <string name="foodopt">食品</string>
+    <string name="photographopt">摄影</string>
+    <string name="otheropt">其他</string>
+
+    <!-- ==============personal_setting=========== -->
+    <string name="changepersonalmaterial">修改个人资料</string>
+    <string name="changepassword">修改密码</string>
+    <string name="noticesetting">通知设置</string>
+    <string name="newmessagenotice">新消息通知</string>
+    <string name="ipayattention">我关注的成功/失败</string>
+    <string name="homeactivitynotice">积善之家活动通知</string>
+    <string name="bundlesetting">绑定设置</string>
+    <string name="sinaweibo">新浪微博</string>
+    <string name="tencentqq">腾讯QQ</string>
+    <string name="personalintroduce">个人简介</string>
+    <string name="othermaterial">其他资料</string>
+    <string name="liveaddress">居住</string>
+    <string name="workaddress">工作</string>
+    <string name="unsetting">未设置</string>
+    <string name="oldpassword">旧密码</string>
+    <string name="newpassword">新密码</string>
+    <string name="confirmpassword">确认密码</string>
+    <string name="allcomment">所有评论</string>
+    <string name="send">发送</string>
+    
+    <string name="passwordprompt1">输入你的原始密码</string>
+    <string name="passwordprompt2">输入你的新密码</string>
+    <string name="passwordprompt3">请再次输入新密码</string>
+
+</resources>

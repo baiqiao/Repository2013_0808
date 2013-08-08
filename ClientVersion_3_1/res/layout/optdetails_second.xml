@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/top_navigate"
+        android:layout_width="fill_parent"
+        android:layout_height="230dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/masterlist_item_bg2"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:alpha="0.5"
+            android:background="@color/white" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:src="@drawable/left_iv_share" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageButton1"
+                android:text="分享" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/textView4"
+                android:layout_marginLeft="8dp"
+                android:background="#00000000"
+                android:src="@drawable/left_iv_discuss" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageButton2"
+                android:text="评论" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/textView5"
+                android:background="#00000000"
+                android:src="@drawable/left_iv_attention" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageButton3"
+                android:text="关注" />
+        </RelativeLayout>
+    </RelativeLayout>
+	
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="50dp">
+	    
+	    <LinearLayout
+	        android:id="@+id/master_list_ll1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_above="@+id/master_list_ll2"
+	        android:layout_marginRight="10dip"
+	        android:layout_marginLeft="10dip"
+	        android:paddingBottom="8dp"
+	        android:gravity="center"
+	        android:orientation="vertical" >
+	
+	        <ProgressBar
+	            android:id="@+id/progressBar1"
+	            style="?android:attr/progressBarStyleHorizontal"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:progress="67" />
+	       
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:id="@+id/master_list_ll2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentLeft="true"
+	        android:gravity="center"
+	        android:orientation="horizontal"
+	        android:paddingBottom="15dp" >
+	
+	        <TextView
+	            android:id="@+id/textView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="20dp"
+	            android:text="91%达到"
+	            android:textSize="15sp" />
+	
+	        <TextView
+	            android:id="@+id/textView2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="8,426已获支持"
+	            android:textSize="15sp" />
+	
+	        <TextView
+	            android:id="@+id/textView3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="20dp"
+	            android:text="16天剩余时间"
+	            android:textSize="15sp" />
+	    </LinearLayout>
+	</RelativeLayout>
+
+</LinearLayout>
