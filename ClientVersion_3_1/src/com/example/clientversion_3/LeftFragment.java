@@ -29,6 +29,7 @@ public class LeftFragment extends Fragment implements OnTouchListener, OnClickLi
 	private Context context;
 	private Activity activity;
 	private Intent intent;
+	private Button left_btn_discuss;
 	
 	public LeftFragment(Context context, Activity activity) {
 		this.context = context;
@@ -44,11 +45,13 @@ public class LeftFragment extends Fragment implements OnTouchListener, OnClickLi
 		iv_userhead = (ImageView)view.findViewById(R.id.left_iv_userhead);
 		left_tv_personalsetting = (TextView)view.findViewById(R.id.left_tv_personalsetting);
 		left_btn_attention = (Button)view.findViewById(R.id.left_btn_attention);
+		left_btn_discuss = (Button)view.findViewById(R.id.left_btn_discuss);
 		
 		iv_userhead.setOnClickListener(this);
 		iv_userhead.setOnTouchListener(this);
 		left_tv_personalsetting.setOnClickListener(this);
 		left_btn_attention.setOnClickListener(this);
+		left_btn_discuss.setOnClickListener(this);
 		
 		return view;
     }
@@ -74,6 +77,11 @@ public class LeftFragment extends Fragment implements OnTouchListener, OnClickLi
 		}
 		else if(v.getId() == R.id.left_tv_personalsetting){
 			intent = new Intent(context, PersonalSettingActivity.class);
+			startActivity(intent);
+			ActivityStartAnim.DownToUp(activity);
+		}
+		else if(v.getId() == R.id.left_btn_discuss){
+			intent = new Intent(context,AllCommentActivity.class);
 			startActivity(intent);
 			ActivityStartAnim.DownToUp(activity);
 		}

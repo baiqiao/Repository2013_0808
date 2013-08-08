@@ -26,6 +26,10 @@
         <activity
             android:name="com.example.clientversion_3.MasterActivity"
             android:label="@string/app_name" >
+            
+        </activity>
+        
+        <activity android:name="com.example.clientversion_3.MasterActivity2"> 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +52,10 @@
         <activity android:name="com.example.clientversion_3.AttentionActivity"> </activity>
         
         <activity android:name="com.example.clientversion_3.OptDetailsActivity"> </activity>
+       
+        <activity android:name="com.example.clientversion_3.ProvinceListActivity"> </activity>
         
+        <activity android:name="com.example.clientversion_3.CityListActivity"> </activity>
         
         
     </application>

@@ -100,6 +100,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/left_bg_unselect"
+                android:gravity="top"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

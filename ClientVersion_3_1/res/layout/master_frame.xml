@@ -2,24 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@android:color/white" >
     
-    <LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:orientation="vertical"
-	    android:background="@android:color/white" >
 	
-	    <include
-	        android:layout_width="match_parent"
-	        layout="@layout/home_header" />
+    <include
+        android:layout_width="match_parent"
+        layout="@layout/home_header" />
+    
+    
+    <com.example.clientversion_3.view.PullDownListView
+        android:id="@+id/sreach_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        <ListView
+            android:id="@+id/lvhome"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.0"
+            android:divider="@null"
+            android:drawSelectorOnTop="false"
+            android:fadingEdgeLength="0.0sp" />
+    </com.example.clientversion_3.view.PullDownListView>
 	    
-	    <ListView
-			android:id="@+id/lvhome"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent" >
-	     </ListView>
-
-	</LinearLayout>
 
 </LinearLayout>

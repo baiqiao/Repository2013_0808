@@ -1,7 +1,6 @@
 package com.example.clientversion_3;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,7 +15,6 @@ public class ChangePasswordActivity extends Activity implements OnClickListener{
 	
 	private ImageButton title_perset_ibtn_confirm;
 	
-	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +37,11 @@ public class ChangePasswordActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.title_perset_ibtn_back:
-			intent = new Intent(ChangePasswordActivity.this,PersonalSettingActivity.class);
-			startActivity(intent);
+			ChangePasswordActivity.this.finish();
 			break;
-
-		default:
+			
+		case R.id.title_perset_ibtn_confirm:
+			ChangePasswordActivity.this.finish();
 			break;
 		}
 	}

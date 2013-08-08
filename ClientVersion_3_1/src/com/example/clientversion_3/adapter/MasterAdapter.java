@@ -18,7 +18,6 @@ public class MasterAdapter extends BaseAdapter {
 
 	private List<ProjectInfo> proinfos;
 	private LayoutInflater inflater;
-	int count = 5;
 	
 	public MasterAdapter(List<ProjectInfo> proinfos, LayoutInflater inflater) {
 		this.proinfos = proinfos;
@@ -27,8 +26,7 @@ public class MasterAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		//return proinfos.size();
-		return count;
+		return proinfos.size();
 	}
 
 	@Override

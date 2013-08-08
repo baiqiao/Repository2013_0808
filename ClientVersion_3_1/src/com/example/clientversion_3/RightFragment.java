@@ -78,7 +78,8 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		MasterActivity.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
+		//MasterActivity.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
+		MasterActivity2.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
 		slidingMenu.showContent();
 	}
 
