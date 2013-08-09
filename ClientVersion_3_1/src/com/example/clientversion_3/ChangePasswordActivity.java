@@ -28,7 +28,7 @@ public class ChangePasswordActivity extends Activity implements OnClickListener{
 
 	private void init(){
 		title_perset_ibtn_back = (ImageButton)this.findViewById(R.id.title_perset_ibtn_back);
-		title_perset_ibtn_confirm = (ImageButton)this.findViewById(R.id.title_perset_ibtn_confirm);
+		title_perset_ibtn_confirm = (ImageButton)this.findViewById(R.id.title_changepwd_ibtn_confirm);
 		
 		title_perset_ibtn_back.setOnClickListener(this);
 		title_perset_ibtn_confirm.setOnClickListener(this);
@@ -40,7 +40,7 @@ public class ChangePasswordActivity extends Activity implements OnClickListener{
 			ChangePasswordActivity.this.finish();
 			break;
 			
-		case R.id.title_perset_ibtn_confirm:
+		case R.id.title_changepwd_ibtn_confirm:
 			ChangePasswordActivity.this.finish();
 			break;
 		}

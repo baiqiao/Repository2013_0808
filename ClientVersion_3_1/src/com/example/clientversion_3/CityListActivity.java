@@ -40,11 +40,10 @@ public class CityListActivity extends Activity {
 		Cursor cCity = myDB.getCities(provinceid);
 		cityCount = cCity.getCount();
 		if (cityCount == 0) {
-			// returnResult(i.getStringExtra("provincename"));
-			if (ChangePersonalMaterialActivity.addressFlag == 0) {
+			if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 0) {
 				ChangePersonalMaterialActivity.change_btn_liveaddress
 						.setText(provincename);
-			} else if (ChangePersonalMaterialActivity.addressFlag == 1) {
+			} else if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 1) {
 				ChangePersonalMaterialActivity.change_btn_workaddress
 						.setText(provincename);
 			}
@@ -67,10 +66,10 @@ public class CityListActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
-				if (ChangePersonalMaterialActivity.addressFlag == 0) {
+				if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 0) {
 					ChangePersonalMaterialActivity.change_btn_liveaddress
 							.setText(provincename + "  " + citys[position][1]);
-				} else if (ChangePersonalMaterialActivity.addressFlag == 1) {
+				} else if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 1) {
 					ChangePersonalMaterialActivity.change_btn_workaddress
 							.setText(provincename + "  " + citys[position][1]);
 				}

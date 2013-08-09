@@ -42,7 +42,8 @@
 	<ScrollView 
 	    android:id="@+id/promoterinfo_scr"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent">
+	    android:layout_height="fill_parent"
+	    android:background="@color/feed_item_bg">
 	    
 	    <RelativeLayout 
 	        android:layout_width="fill_parent"
@@ -194,7 +195,7 @@
 			    android:layout_marginLeft="12dp"
 			    android:layout_marginRight="12dp"
 			    android:layout_below="@+id/rl1"
-			    android:background="@drawable/promoterinfo_details_supportbg">
+			    android:background="@drawable/moment_avatar">
 		
 				<ImageButton
 				    android:id="@+id/promoterinfo_details_iv_wpmsg"
@@ -214,6 +215,7 @@
 				    android:layout_alignParentRight="true"
 				    android:layout_marginRight="25dp"
 				    android:layout_below="@+id/promoterinfo_details_iv_wpmsg"
+				    android:textColor="@color/gray"
 				    android:text="写私信" />
 		
 				<TextView
@@ -224,6 +226,7 @@
 				    android:layout_alignParentTop="true"
 				    android:layout_marginTop="8dp"
 				    android:textSize="18sp"
+				    android:textColor="@color/black"
 				    android:text="一千只猫和玫瑰" />
 		
 				<TextView
@@ -236,6 +239,7 @@
 				    android:layout_marginLeft="5dp"
 				    android:ems="8"
 				    android:textSize="14sp"
+				    android:textColor="@color/gray"
 				    android:text="有生之年狭路相逢终不能幸免" />
 		
 				<TextView
@@ -247,6 +251,7 @@
 				    android:layout_marginLeft="20dp"
 				    android:layout_marginBottom="8dp"
 				    android:textSize="18sp"
+				    android:textColor="@color/black"
 				    android:text="支持的项目(2)" />
 		
 				<TextView
@@ -258,6 +263,7 @@
 				    android:textSize="18sp"
 				    android:layout_marginRight="20dp"
 				    android:layout_marginBottom="8dp"
+				    android:textColor="@color/black"
 				    android:text="发起的项目(0)" />
 			    
 			</RelativeLayout>

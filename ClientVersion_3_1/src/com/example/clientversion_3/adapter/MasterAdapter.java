@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -47,7 +48,8 @@ public class MasterAdapter extends BaseAdapter {
 		//LinearLayout view = (LinearLayout) inflater.inflate(R.layout.test, null);
 		RelativeLayout master_list_rl1 = (RelativeLayout)view.findViewById(R.id.master_list_rl1);
 		ProjectInfo proinfo = proinfos.get(arg0);
-		//ImageView master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
+		
+		ImageView master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
 		ProgressBar masterpage_pbar = (ProgressBar)view.findViewById(R.id.master_item_pbar);
 		TextView master_item_tv_reachnum = (TextView)view.findViewById(R.id.master_item_tv_reachnum);
 		TextView master_item_tv_supportnum = (TextView)view.findViewById(R.id.master_item_tv_supportnum);
@@ -57,7 +59,7 @@ public class MasterAdapter extends BaseAdapter {
 		TextView master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
 		
 		masterpage_pbar.setProgress(proinfo.getProgressNum());
-		master_item_tv_reachnum.setText(proinfo.getReachNum() + "%已达到");
+		master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
 		master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
 		master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
 		master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
@@ -66,7 +68,7 @@ public class MasterAdapter extends BaseAdapter {
 		
 		
 		if(arg0 % 2 == 0){
-			master_list_rl1.setBackgroundResource(R.drawable.masterlist_item_bg);
+			master_item_iv_bg.setBackgroundResource(R.drawable.masterlist_item_bg);
 		}
 		/*
 		view.setOnTouchListener(new OnTouchListener() {

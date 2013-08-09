@@ -34,6 +34,16 @@
                 android:text="@string/changepersonalmaterial"
                 android:textColor="@color/red"
                 android:textSize="24sp" />
+            
+            <ImageButton
+                android:id="@+id/title_permat_ibtn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/selector_top_button"
+                android:src="@drawable/change_password_tile_right" />
         </RelativeLayout>
 
         <LinearLayout
@@ -48,17 +58,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/perset_ibtn_headgraph"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/left_bg_unselect"
                 android:src="@drawable/change_personal_materal_headgraph" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical" >
 

@@ -67,6 +67,11 @@
     <string name="confirmpassword">确认密码</string>
     <string name="allcomment">所有评论</string>
     <string name="send">发送</string>
+    <string name="take_photo">拍照</string> 
+  <string name="pick_photo">从相册选择</string> 
+  <string name="attachToContact">请选择头像来源</string> 
+  <string name="photoPickerNotFoundText">没有找到照片</string>
+    
     
     <string name="passwordprompt1">输入你的原始密码</string>
     <string name="passwordprompt2">输入你的新密码</string>

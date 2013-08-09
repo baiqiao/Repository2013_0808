@@ -52,6 +52,7 @@ public class RTPullListView extends ListView implements OnScrollListener {
 
 	// 用于保证startY的值在一个完整的touch事件中只被记录一次
 	private boolean isRecored;
+	private boolean isEnd = true;
 
 //	private int headContentWidth;
 	private int headContentHeight;
@@ -127,6 +128,12 @@ public class RTPullListView extends ListView implements OnScrollListener {
 		if(firstItemIndex == 1 && !isPush){
 			setSelection(0);
 		}
+		
+		if (firstVisiableItem + arg2 >= arg3 - 1)
+			isEnd = true;
+		else
+			isEnd = false;
+		
 	}
 	
 	public void setSelectionfoot(){
@@ -135,7 +142,7 @@ public class RTPullListView extends ListView implements OnScrollListener {
 
 	public void onScrollStateChanged(AbsListView arg0, int arg1) {
 		
-		if(arg1 == SCROLL_STATE_IDLE) {
+		if(isEnd && arg1 == SCROLL_STATE_IDLE) {
 			loadMore();
         }
 	}

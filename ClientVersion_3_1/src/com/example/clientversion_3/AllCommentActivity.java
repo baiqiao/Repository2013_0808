@@ -81,7 +81,7 @@ public class AllCommentActivity extends Activity {
 		title_perset_ibtn_back = (ImageButton) this
 				.findViewById(R.id.title_perset_ibtn_back);
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 50; i++) {
 			CommentItem commentItem = new CommentItem();
 			commentItem.username = "ÕÅÈý" + i + "ºÅ";
 			commentItem.time = "8:" + i * 2;
