@@ -85,7 +85,7 @@ public class MasterActivity extends BaseActivity implements OnClickListener, OnT
        HomelistView.setDividerHeight(0);
        HomelistView.setOnItemClickListener(this);
        addLists(20);
-       masterAdapter = new MasterAdapter(proinfos, inflater);
+       masterAdapter = new MasterAdapter(proinfos, this, inflater);
        mPullDownView.setMore(true);//这里设置true表示还有更多加载，设置为false底部将不显示更多
        
        HomelistView.setAdapter(masterAdapter);

@@ -32,6 +32,10 @@
         </activity>
         
         <activity android:name="com.example.clientversion_3.MasterActivity2"> 
+            
+        </activity>
+        
+        <activity android:name="com.example.clientversion_3.MasterActivity3"> 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

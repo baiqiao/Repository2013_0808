@@ -1,6 +1,7 @@
 package com.example.clientversion_3.entity;
 
 public class ProjectInfo {
+	private int projectId;
 	private int progressNum;
 	private int reachNum;
 	private int supportNum;
@@ -8,6 +9,34 @@ public class ProjectInfo {
 	private int attentionNum;
 	private int discussNum;
 	private int sharedNum;
+	private String promoterName;
+	private String promoterId;
+	private String[] descriptions;
+	
+	public int getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+	public String getPromoterName() {
+		return promoterName;
+	}
+	public void setPromoterName(String promoterName) {
+		this.promoterName = promoterName;
+	}
+	public String getPromoterId() {
+		return promoterId;
+	}
+	public void setPromoterId(String promoterId) {
+		this.promoterId = promoterId;
+	}
+	public String[] getDescriptions() {
+		return descriptions;
+	}
+	public void setDescriptions(String[] descriptions) {
+		this.descriptions = descriptions;
+	}
 	public int getProgressNum() {
 		return progressNum;
 	}

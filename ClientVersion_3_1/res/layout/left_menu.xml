@@ -8,14 +8,20 @@
         android:id="@+id/l1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        <ImageView
-            android:id="@+id/left_iv_userhead"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="15dp"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/userhead" />
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp">
+            <ImageView
+	            android:id="@+id/left_iv_userhead"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/comment_avatar"
+	            android:src="@drawable/userhead" />
+        </LinearLayout>
+        
         
         <LinearLayout 
             android:layout_width="0dip"

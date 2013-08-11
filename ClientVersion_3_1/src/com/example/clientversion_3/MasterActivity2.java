@@ -77,7 +77,7 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
        pullListView.setDividerHeight(0);
        pullListView.setMore(true);
        addLists(20);
-       masterAdapter = new MasterAdapter(proinfos, inflater);
+       masterAdapter = new MasterAdapter(proinfos, this, inflater);
        pullListView.setAdapter(masterAdapter);
        pullListView.setonRefreshListener(this);
        pullListView.setOnItemClickListener(this);

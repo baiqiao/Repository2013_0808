@@ -2,6 +2,7 @@ package com.example.clientversion_3.adapter;
 
 import java.util.List;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.clientversion_3.entity.ProjectInfo;
+import com.example.clientversion_3.util.BitmapCache;
 import com.example.clientversion_3_1.R;
 
 public class MasterAdapter extends BaseAdapter {
 
 	private List<ProjectInfo> proinfos;
 	private LayoutInflater inflater;
+	private Context context;
+	private BitmapCache mBCache = BitmapCache.getInstance();
 	
-	public MasterAdapter(List<ProjectInfo> proinfos, LayoutInflater inflater) {
+	public MasterAdapter(List<ProjectInfo> proinfos, Context context, LayoutInflater inflater) {
 		this.proinfos = proinfos;
+		this.context = context;
 		this.inflater = inflater;
 	}
 	
@@ -46,7 +51,7 @@ public class MasterAdapter extends BaseAdapter {
 		
 		LinearLayout view = (LinearLayout) inflater.inflate(R.layout.item_master_page, null);
 		//LinearLayout view = (LinearLayout) inflater.inflate(R.layout.test, null);
-		RelativeLayout master_list_rl1 = (RelativeLayout)view.findViewById(R.id.master_list_rl1);
+		//RelativeLayout master_list_rl1 = (RelativeLayout)view.findViewById(R.id.master_list_rl1);
 		ProjectInfo proinfo = proinfos.get(arg0);
 		
 		ImageView master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
@@ -68,7 +73,10 @@ public class MasterAdapter extends BaseAdapter {
 		
 		
 		if(arg0 % 2 == 0){
-			master_item_iv_bg.setBackgroundResource(R.drawable.masterlist_item_bg);
+			master_item_iv_bg.setImageBitmap(mBCache.getBitmap(R.drawable.masterlist_item_bg, context));
+		}
+		else {
+			master_item_iv_bg.setImageBitmap(mBCache.getBitmap(R.drawable.masterlist_item_bg2, context));
 		}
 		/*
 		view.setOnTouchListener(new OnTouchListener() {

@@ -74,8 +74,8 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 				TextView t = new TextView(getBaseContext());
 				details_texts.addView(t);
 				t.setText(s[i]);
-				t.setTextSize(16);
-				t.setTextColor(color.gray);
+				t.setTextSize(17);
+				t.setTextColor(color.med_gray);
 				t.setLineSpacing((float) 1.2, (float) 1.2);
 			}
 		}
