@@ -34,7 +34,7 @@
                 android:text="@string/personalsetting"
                 android:textColor="@color/red"
                 android:textSize="24sp" />
-            
+
             <ImageButton
                 android:id="@+id/title_perset_ibtn_confirm"
                 android:layout_width="wrap_content"
@@ -95,10 +95,10 @@
                         android:id="@+id/perset_tv_changeper_mat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/selector_top_button"
+                        android:clickable="true"
                         android:text="@string/changepersonalmaterial"
                         android:textColor="@color/color_qianhui"
-                        android:clickable="true"
-                        android:background="@drawable/selector_top_button"
                         android:textSize="18sp" />
 
                     <ImageButton
@@ -122,10 +122,10 @@
                         android:id="@+id/perset_tv_changepassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/selector_top_button"
+                        android:clickable="true"
                         android:text="@string/changepassword"
                         android:textColor="@color/color_qianhui"
-                        android:clickable="true"
-                        android:background="@drawable/selector_top_button"
                         android:textSize="18sp" />
 
                     <ImageButton
@@ -173,14 +173,15 @@
                 android:text="@string/newmessagenotice"
                 android:textSize="18sp" />
 
-            <Switch
+            <com.example.clientversion_3.view.Switch
                 android:id="@+id/perset_switch_newmessagenotice"
+                style="@style/Switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="15dp" />
-
+                android:layout_marginRight="15dp"
+                android:clickable="true" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -196,13 +197,14 @@
                 android:text="@string/ipayattention"
                 android:textSize="18sp" />
 
-            <Switch
+        <!--     <Switch
                 android:id="@+id/perset_switch_ipayattention"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="15dp" />
+                --> 
         </RelativeLayout>
 
         <RelativeLayout
@@ -219,13 +221,14 @@
                 android:text="@string/homeactivitynotice"
                 android:textSize="18sp" />
 
-            <Switch
+         <!--    <Switch
                 android:id="@+id/perset_switch_homeactivitynotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="15dp" />
+                 -->
         </RelativeLayout>
     </LinearLayout>
 
@@ -260,13 +263,14 @@
                 android:text="@string/sinaweibo"
                 android:textSize="18sp" />
 
-            <Switch
+       <!--   <Switch
                 android:id="@+id/perset_switch_sinaweibo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="15dp" />
+                  -->  
         </RelativeLayout>
 
         <RelativeLayout
@@ -283,13 +287,14 @@
                 android:text="@string/tencentqq"
                 android:textSize="18sp" />
 
-            <Switch
+       <!--     <Switch
                 android:id="@+id/perset_switch_tencentqq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="15dp" />
+                 --> 
         </RelativeLayout>
     </LinearLayout>
 

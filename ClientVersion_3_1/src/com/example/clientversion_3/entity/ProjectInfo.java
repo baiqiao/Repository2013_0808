@@ -11,6 +11,13 @@ public class ProjectInfo {
 	private int sharedNum;
 	private String promoterName;
 	private String promoterId;
+	private String imageUrl;
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	private String[] descriptions;
 	
 	public int getProjectId() {

@@ -88,13 +88,13 @@ public class AllCommentActivity extends Activity {
 
 			if (i % 3 == 0) {
 				commentItem.comment = "让更多的人看到。江西6岁的小女孩丁香小慧家住上......";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/8921FA65ECA420A544383EE050AEB152/40";
+				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/8921FA65ECA420A544383EE050AEB152/100";
 			} else if (i % 3 == 1) {
 				commentItem.comment = "面对，不一定最难过。孤独，不一定不快乐。得到，不一定能长久。失去，不一定不再拥有。不要因为寂寞而错爱，不要因为错爱而寂寞一生。——徐志摩【早安】";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/359EB7CFAE1D491431624EA5A6EC2EFB/40";
+				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/359EB7CFAE1D491431624EA5A6EC2EFB/100";
 			} else {
 				commentItem.comment = "简单的纯色衬衫，总是能衬托出男人最帅气的一面,这件很不错。";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/2742189F92589C79E82264478841599D/40";
+				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/2742189F92589C79E82264478841599D/100";
 			}
 			commentItems.add(commentItem);
 		}

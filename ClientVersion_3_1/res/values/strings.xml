@@ -47,6 +47,8 @@
     <string name="pull_to_refresh">Pull to refresh</string>
     <string name="refreshing">Refreshing...</string>
     <string name="updating">Updating：</string>
+    
+    <string name="descr_image">Image</string>
 
     <!-- ==============personal_setting=========== -->
     <string name="changepersonalmaterial">修改个人资料</string>
