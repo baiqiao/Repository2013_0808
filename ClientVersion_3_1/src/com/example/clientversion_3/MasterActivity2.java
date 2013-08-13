@@ -1,10 +1,13 @@
 package com.example.clientversion_3;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,27 +28,42 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.clientversion_3.adapter.MasterAdapter;
+import com.example.clientversion_3.adapter.ItemAdapter;
 import com.example.clientversion_3.entity.ProjectInfo;
 import com.example.clientversion_3.util.ActivityStartAnim;
+import com.example.clientversion_3.util.Constants;
 import com.example.clientversion_3.view.RTPullListView;
 import com.example.clientversion_3_1.R;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-public class MasterActivity2 extends BaseActivity implements OnClickListener, OnTouchListener, 
+public class MasterActivity2 extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
 	OnItemClickListener,RTPullListView.OnRefreshListener  {
 	private ImageButton leftBtn;
 	private ImageButton rightBtn; 
 	public static TextView tvHeaderTitle;
 	public Dialog dialog;
 	private Handler mHandler = new Handler();
-	private boolean isLoadingMore = false;//是否正在加载数据
-	private int maxAount = 50;//设置了最大数据值
-	private int lastSize = 0;
+	private boolean isLoadingMore = false;		//是否正在加载数据
+	private final int maxAount = 2000;			//设置了最大数据值
+	private int lastSize = 0;					//目前剩余可加载空间
+	private final int originalNum = 8;			//初始条数
+	private final int addMoreNum = 3;			//加载更多增加信息条数
 	private RTPullListView pullListView;
 	private List<ProjectInfo> proinfos = new ArrayList<ProjectInfo>();
 	private LayoutInflater inflater;
-	private MasterAdapter masterAdapter;
 	private Intent intent;
+	
+	
+	/**图片加载相关因素*/
+	//private ImageLoader imageLoader = ImageLoader.getInstance();
+	private DisplayImageOptions options;
+	private ItemAdapter itemAdapter;
+	private String[] imageUrls = Constants.IMAGES;
+	private ImageLoadingListener animateFirstListener;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +71,6 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
 	   super.onCreate(savedInstanceState);
        requestWindowFeature(Window.FEATURE_NO_TITLE);
        setContentView(R.layout.master_frame2);
-       inflater = this.getLayoutInflater();
        
        /*LeftLayout在BaseActivity中添加了*/
        /*添加RightLayout*/
@@ -63,7 +80,16 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
        
-       
+       inflater = this.getLayoutInflater();
+       options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.ic_stub)
+		.showImageForEmptyUri(R.drawable.ic_empty)
+		.showImageOnFail(R.drawable.ic_error)
+		.cacheInMemory(true)
+		.cacheOnDisc(true)
+		.displayer(new RoundedBitmapDisplayer(20))
+		.build();
+       animateFirstListener = new AnimateFirstDisplayListener();
        
        leftBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnLeft);
        rightBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnRigh);
@@ -72,13 +98,12 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
        leftBtn.setOnClickListener(this);
        rightBtn.setOnClickListener(this);
        
-       
        pullListView = (RTPullListView) this.findViewById(R.id.lvhome2);
        pullListView.setDividerHeight(0);
        pullListView.setMore(true);
-       addLists(20);
-       masterAdapter = new MasterAdapter(proinfos, this, inflater);
-       pullListView.setAdapter(masterAdapter);
+       this.addLists(originalNum);
+       itemAdapter = new ItemAdapter(imageLoader, options, animateFirstListener, proinfos, inflater);
+       pullListView.setAdapter(itemAdapter);
        pullListView.setonRefreshListener(this);
        pullListView.setOnItemClickListener(this);
        
@@ -120,7 +145,8 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
 	 	   proinfo.setAttentionNum(30);
 	 	   proinfo.setDiscussNum(15);
 	 	   proinfo.setSharedNum(675);
-				
+	 	   proinfo.setImageUrl(imageUrls[i]);
+	 	  
 	 	   proinfos.add(proinfo);
 	    }
 	}
@@ -131,10 +157,10 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
             @Override  
             public void run() {  
             	proinfos.clear();
-            	addLists(15);
-					masterAdapter.notifyDataSetChanged();
-					pullListView.onRefreshComplete();
-					pullListView.setMore(true);
+            	addLists(originalNum);
+            	itemAdapter.notifyDataSetChanged();
+				pullListView.onRefreshComplete();
+				pullListView.setMore(true);
             }  
         }, 2000);  
 		
@@ -151,15 +177,15 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
                 public void run() {  
                 	lastSize = maxAount - proinfos.size();
                 	
-                	if(lastSize < 9 && lastSize >= 0) {
+                	if(lastSize < addMoreNum && lastSize >= 0) {
                 		addLists(lastSize);
 					}
 					else {
-						addLists(9);
+						addLists(addMoreNum);
 					}
                 	
                 	if(lastSize > 0) {
-                		masterAdapter.notifyDataSetChanged();
+                		itemAdapter.notifyDataSetChanged();
 						pullListView.setSelectionfoot();
 						isLoadingMore = false;
                 	}
@@ -172,6 +198,95 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
 		}
 		
 	}
+	
+	/*
+	private class ItemAdapter extends BaseAdapter {
+
+		private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
+
+		private class ViewHolder {
+			
+			ImageView master_item_iv_bg;
+			ProgressBar masterpage_pbar;
+			TextView master_item_tv_reachnum;
+			TextView master_item_tv_supportnum;
+			TextView master_item_tv_remaintime;
+			TextView master_item_tv_attentionnum;
+			TextView master_item_tv_discussnum;
+			TextView master_item_tv_sharenum;
+		}
+
+		@Override
+		public int getCount() {
+			return proinfos.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return position;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			View view = convertView;
+			final ViewHolder holder;
+			ProjectInfo proinfo = proinfos.get(position);
+			
+			if (convertView == null) {
+				view = getLayoutInflater().inflate(R.layout.item_master_page, parent, false);
+				holder = new ViewHolder();
+				
+				holder.master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
+				holder.masterpage_pbar = (ProgressBar)view.findViewById(R.id.master_item_pbar);
+				holder.master_item_tv_reachnum = (TextView)view.findViewById(R.id.master_item_tv_reachnum);
+				holder.master_item_tv_supportnum = (TextView)view.findViewById(R.id.master_item_tv_supportnum);
+				holder.master_item_tv_remaintime = (TextView)view.findViewById(R.id.master_item_tv_remaintime);
+				holder.master_item_tv_attentionnum = (TextView)view.findViewById(R.id.master_item_tv_attentionnum);
+				holder.master_item_tv_discussnum = (TextView)view.findViewById(R.id.master_item_tv_discussnum);
+				holder.master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
+				
+				holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
+				holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
+				holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
+				holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
+				holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
+				holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
+				holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
+				
+				view.setTag(holder);
+			} 
+			else {
+				holder = (ViewHolder) view.getTag();
+			}
+
+			imageLoader.displayImage(proinfo.getImageUrl(), holder.master_item_iv_bg, options, animateFirstListener);
+
+			return view;
+		}
+	}*/
+
+	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+		@Override
+		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+			if (loadedImage != null) {
+				ImageView imageView = (ImageView) view;
+				boolean firstDisplay = !displayedImages.contains(imageUri);
+				if (firstDisplay) {
+					FadeInBitmapDisplayer.animate(imageView, 500);
+					displayedImages.add(imageUri);
+				}
+			}
+		}
+	}
+	
 	
    	@Override
    	public boolean onCreateOptionsMenu(Menu menu)
@@ -211,7 +326,7 @@ public class MasterActivity2 extends BaseActivity implements OnClickListener, On
 		// TODO Auto-generated method stub
 		intent = new Intent(MasterActivity2.this, OptDetailsActivity.class);
 		startActivity(intent);
-		ActivityStartAnim.DownToUp(this);
+		ActivityStartAnim.LeftToRight(this);
 		
 	}
 

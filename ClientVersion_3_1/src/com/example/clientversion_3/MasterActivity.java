@@ -36,7 +36,7 @@ import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3.view.PullDownListView;
 import com.example.clientversion_3_1.R;
 
-public class MasterActivity extends BaseActivity implements OnClickListener, OnTouchListener, 
+public class MasterActivity extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
 	OnItemClickListener, PullDownListView.OnRefreshListioner{
 	private ImageButton leftBtn;
 	private ImageButton rightBtn; 

@@ -1,10 +1,13 @@
 package com.example.clientversion_3;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,28 +29,43 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.example.clientversion_3.adapter.MasterAdapter;
+import com.example.clientversion_3.adapter.ItemAdapter;
 import com.example.clientversion_3.entity.ProjectInfo;
 import com.example.clientversion_3.util.ActivityStartAnim;
+import com.example.clientversion_3.util.Constants;
 import com.example.clientversion_3.view.RefreshListView;
 import com.example.clientversion_3_1.R;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-public class MasterActivity3 extends BaseActivity implements OnClickListener, OnTouchListener, 
+public class MasterActivity3 extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
 	OnItemClickListener, RefreshListView.RefreshListener{
 	private ImageButton leftBtn;
 	private ImageButton rightBtn; 
 	public static TextView tvHeaderTitle;
 	public Dialog dialog;
 	private Handler mHandler = new Handler();
-	private boolean isLoadingMore = false;//是否正在加载数据
-	private int maxAount = 50;//设置了最大数据值
-	private int lastSize = 0;
+	private boolean isLoadingMore = false;		//是否正在加载数据
+	private final int maxAount = 2000;			//设置了最大数据值
+	private int lastSize = 0;					//目前剩余可加载空间
+	private final int originalNum = 8;			//初始条数
+	private final int addMoreNum = 3;			//加载更多增加信息条数
 	private RefreshListView refreshView;
 	private List<ProjectInfo> proinfos = new ArrayList<ProjectInfo>();
 	private LayoutInflater inflater;
-	private MasterAdapter masterAdapter;
 	private Intent intent;
-	private LinearLayout mLoadLayout;  
+	private LinearLayout mLoadLayout;  			//容器，用于添加自定义listview
+	
+	/**图片加载相关因素*/
+	private DisplayImageOptions options;
+	private ItemAdapter itemAdapter;
+	private String[] imageUrls = Constants.IMAGES;
+	private ImageLoadingListener animateFirstListener;
+	
+	
 	
 	private final LayoutParams mTipContentLayoutParams = new LinearLayout.LayoutParams(  
             LinearLayout.LayoutParams.FILL_PARENT,  
@@ -59,16 +77,24 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
 	   super.onCreate(savedInstanceState);
        requestWindowFeature(Window.FEATURE_NO_TITLE);
        setContentView(R.layout.master_frame3);
-       inflater = this.getLayoutInflater();
        
-       /*LeftLayout在BaseActivity中添加了*/
-       /*添加RightLayout*/
+       /*添加RightLayout,LeftLayout在BaseActivity中添加了*/
        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
        RightFragment rightFrag = new RightFragment(this, super.slidingMenu);
        slidingMenu.setSecondaryMenu(R.layout.right_frame);
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
        
+       inflater = this.getLayoutInflater();
+       options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.ic_stub)
+		.showImageForEmptyUri(R.drawable.ic_empty)
+		.showImageOnFail(R.drawable.ic_error)
+		.cacheInMemory(true)
+		.cacheOnDisc(true)
+		.displayer(new RoundedBitmapDisplayer(20))
+		.build();
+       animateFirstListener = new AnimateFirstDisplayListener();
        
        
        leftBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnLeft);
@@ -84,21 +110,16 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
        refreshView.setOnItemClickListener(this);
        
        mLoadLayout = (LinearLayout)findViewById(R.id.linearlayout_list);
-		
-       
        mLoadLayout.setGravity(Gravity.CENTER); 
-       
-       addLists(20);
+       this.addLists(originalNum);
        refreshView.setMore(true);
-       masterAdapter = new MasterAdapter(proinfos, this, inflater);
-       refreshView.setAdapter(masterAdapter);
-       
+       itemAdapter = new ItemAdapter(imageLoader, options, animateFirstListener, proinfos, inflater);
+       refreshView.setAdapter(itemAdapter);
        refreshView.setSelection(1);
-         
        mLoadLayout.addView(refreshView, mTipContentLayoutParams);
        
-       
        DialogView();
+       
    	}
    
    private void DialogView() {
@@ -136,6 +157,7 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
 	 	   proinfo.setAttentionNum(30);
 	 	   proinfo.setDiscussNum(15);
 	 	   proinfo.setSharedNum(675);
+	 	   proinfo.setImageUrl(imageUrls[i]);
 				
 	 	   proinfos.add(proinfo);
 	    }
@@ -153,14 +175,12 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
             @Override  
             public void run() {  
             	proinfos.clear();
-            	addLists(15);
-					masterAdapter.notifyDataSetChanged();
-					refreshView.setSelection(1);
-					refreshView.setMore(true);
+            	addLists(8);
+            	itemAdapter.notifyDataSetChanged();
+				refreshView.setSelection(1);
+				refreshView.setMore(true);
             }  
         }, 50);  
-		
-		
 	}
 
 	@Override
@@ -168,21 +188,19 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
 
 		if(!isLoadingMore) {
 			isLoadingMore = true;
-			
 			mHandler.postDelayed(new Runnable() {  
                 @Override  
                 public void run() {  
                 	lastSize = maxAount - proinfos.size();
-                	
-                	if(lastSize < 9 && lastSize >= 0) {
+                	if(lastSize < addMoreNum && lastSize >= 0) {
                 		addLists(lastSize);
 					}
 					else {
-						addLists(9);
+						addLists(addMoreNum);
 					}
                 	
                 	if(lastSize > 0) {
-                		masterAdapter.notifyDataSetChanged();
+                		itemAdapter.notifyDataSetChanged();
 						isLoadingMore = false;
                 	}
                 	else{
@@ -192,9 +210,26 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
                 }  
             }, 2000);  
 		}
-		
 	}
-   
+	
+	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+		@Override
+		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+			if (loadedImage != null) {
+				ImageView imageView = (ImageView) view;
+				boolean firstDisplay = !displayedImages.contains(imageUri);
+				if (firstDisplay) {
+					FadeInBitmapDisplayer.animate(imageView, 500);
+					displayedImages.add(imageUri);
+				}
+			}
+		}
+	}
+	
+	
 	
    	@Override
    	public boolean onCreateOptionsMenu(Menu menu)
@@ -202,6 +237,12 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
    		getMenuInflater().inflate(R.menu.main, menu);
    		return true;
    	}
+   	
+   	@Override
+	public void onBackPressed() {
+		AnimateFirstDisplayListener.displayedImages.clear();
+		super.onBackPressed();
+	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -219,10 +260,8 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if(v.getId() == R.id.ivTitleBtnLeft){
 			super.slidingMenu.showMenu();
-			
 		}
 		else if(v.getId() == R.id.ivTitleBtnRigh) {
 			super.slidingMenu.showSecondaryMenu();
@@ -231,13 +270,10 @@ public class MasterActivity3 extends BaseActivity implements OnClickListener, On
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
 		intent = new Intent(MasterActivity3.this, OptDetailsActivity.class);
 		startActivity(intent);
 		ActivityStartAnim.RightToLeft(this);
 		
 	}
-
-	
 
 }

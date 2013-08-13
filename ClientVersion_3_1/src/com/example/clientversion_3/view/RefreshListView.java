@@ -140,7 +140,6 @@ public class RefreshListView extends ListView implements OnScrollListener {
                 mMoveY = ev.getY();
                 if (mPullRefreshState == OVER_PULL_REFRESH) {
                     mHeaderLinearLayout.setPadding(mHeaderLinearLayout.getPaddingLeft(),
-
                             (int)((mMoveY - mDownY)/10),
                             mHeaderLinearLayout.getPaddingRight(),
                             mHeaderLinearLayout.getPaddingBottom());
@@ -204,16 +203,24 @@ public class RefreshListView extends ListView implements OnScrollListener {
                 && (mHeaderLinearLayout.getBottom() >= 0 && mHeaderLinearLayout.getBottom() < mHeaderHeight)) {
 
             //进入且仅进入下拉刷新状态
-
-            if (mPullRefreshState == NONE_PULL_REFRESH) {
-
+        	if (mPullRefreshState == NONE_PULL_REFRESH) {
                 mPullRefreshState = ENTER_PULL_REFRESH;
                 
             }
+        	
+            /*if (mPullRefreshState == NONE_PULL_REFRESH || mPullRefreshState == OVER_PULL_REFRESH) {
+                mPullRefreshState = ENTER_PULL_REFRESH;
+                
+                mHeaderTextView.setText(getResources().getString(R.string.pull_to_refresh));//显示松手刷新
+                
+                mHeaderPullDownImageView.setVisibility(View.VISIBLE);//隐藏"下拉刷新"
+                
+                mHeaderReleaseDownImageView.setVisibility(View.GONE);//显示向上的箭头
+            }*/
+            
         } 
         
         else if (mCurrentScrollState == SCROLL_STATE_TOUCH_SCROLL
-
                 && firstVisibleItem == 0
                 && (mHeaderLinearLayout.getBottom() >= mHeaderHeight)) {
 
@@ -229,8 +236,6 @@ public class RefreshListView extends ListView implements OnScrollListener {
                 
                 mHeaderPullDownImageView.setVisibility(View.GONE);//隐藏"下拉刷新"
                 
-                //mHeaderPullDownImageView.startAnimation(mAnimationUp);
-
                 mHeaderReleaseDownImageView.setVisibility(View.VISIBLE);//显示向上的箭头
 
             }
@@ -247,11 +252,9 @@ public class RefreshListView extends ListView implements OnScrollListener {
         else if (mCurrentScrollState == SCROLL_STATE_FLING && firstVisibleItem == 0) {
 
             //飞滑状态，不能显示出header，也不能影响正常的飞滑
-
             //只在正常情况下才纠正位置
 
             if (mPullRefreshState == NONE_PULL_REFRESH) {
-
                 setSelection(1);
             }
         }

@@ -36,9 +36,7 @@ public class SlidingMenu extends RelativeLayout
     private static final String TAG                  = "SlidingMenu";
 
     public static final int     SLIDING_WINDOW       = 0;
-
     public static final int     SLIDING_CONTENT      = 1;
-
     private boolean             mActionbarOverlay    = false;
 
     /** Constant value for use with setTouchModeAbove(). Allows the SlidingMenu to be opened with a swipe
@@ -69,11 +67,8 @@ public class SlidingMenu extends RelativeLayout
     public static final int     LEFT_RIGHT           = 2;
 
     private CustomViewAbove     mViewAbove;
-
     private CustomViewBehind    mViewBehind;
-
     private OnOpenListener      mOpenListener;
-
     private OnCloseListener     mCloseListener;
 
     /**

@@ -69,16 +69,15 @@ public class LoginActivity extends Activity implements OnClickListener,
 	private static final String REDIRECT_URL = "http://www.sina.com";
 	public static Oauth2AccessToken accessToken = null;
 	public static final String TAG = "sinasdk";
-
+	/**SsoHandler 仅当sdk支持sso时有效*/
+	SsoHandler mSsoHandler;
+	
 	private static final String SCOPE = "all";
 	private String APP_ID = "222222";
 	private Tencent mTencent;
 	private Handler mHandler = new Handler();
 	private Dialog mProgressDialog;
-	/**
-	 * SsoHandler 仅当sdk支持sso时有效，
-	 */
-	SsoHandler mSsoHandler;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -216,9 +215,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		/**
-		 * 下面两个注释掉的代码，仅当sdk支持sso时有效，
-		 */
+		/**下面两个注释掉的代码，仅当sdk支持sso时有效*/
 		if (mSsoHandler != null) {
 			mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
 		}
@@ -244,12 +241,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
-		/**
-		 * 
-		 * 处理按钮背景
-		 * 
-		 * @author yl
-		 */
+		/** 处理按钮背景	 @author yl*/
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			v.setBackgroundColor(getResources().getColor(R.color.pink));
