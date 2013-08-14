@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -20,6 +21,8 @@ import com.example.clientversion_3.util.ListInScrollHelper;
 import com.example.clientversion_3.view.ImageTextButton;
 import com.example.clientversion_3.view.SlidingMenu;
 import com.example.clientversion_3_1.R;
+import com.example.clientversion_3_1.R.color;
+import com.example.clientversion_3_1.R.drawable;
 
 @SuppressLint("ValidFragment")
 public class RightFragment extends Fragment implements OnClickListener, OnTouchListener, OnItemClickListener{
@@ -66,6 +69,11 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 		right_btn_new.setOnClickListener(this);
 		right_btn_willtofinish.setOnClickListener(this);
 		
+		right_btn_recommend.setOnTouchListener(this);
+		right_btn_hot.setOnTouchListener(this);
+		right_btn_new.setOnTouchListener(this);
+		right_btn_willtofinish.setOnTouchListener(this);
+		
 		
 		return view;
 		
@@ -79,20 +87,58 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		//MasterActivity.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
-		MasterActivity2.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
-		//MasterActivity3_1.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
+		//MasterActivity2.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
+		MasterActivity3.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
 		slidingMenu.showContent();
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
+		
+		
+		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			((ImageTextButton)v).setTextColor(getResources().getColor(color.red));
+			//((ImageTextButton)v).setIcon(drawable.arrow_up);
+			((ImageTextButton)v).invalidate();
+		}
+		else {
+			((ImageTextButton)v).setTextColor(getResources().getColor(color.black));
+			((ImageTextButton)v).invalidate();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		if(v.getId() == R.id.right_btn_recommend){
+			right_btn_recommend.setTextColor(getResources().getColor(color.red));
+			right_btn_hot.setTextColor(getResources().getColor(color.black));	
+			right_btn_new.setTextColor(getResources().getColor(color.black));	
+			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
+			
+		}
+		if(v.getId() == R.id.right_btn_hot){
+			right_btn_recommend.setTextColor(getResources().getColor(color.black));
+			right_btn_hot.setTextColor(getResources().getColor(color.red));	
+			right_btn_new.setTextColor(getResources().getColor(color.black));	
+			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
+			
+		}
+		if(v.getId() == R.id.right_btn_new){
+			right_btn_recommend.setTextColor(getResources().getColor(color.black));
+			right_btn_hot.setTextColor(getResources().getColor(color.black));	
+			right_btn_new.setTextColor(getResources().getColor(color.red));	
+			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
+			
+		}
+		if(v.getId() == R.id.right_btn_willtofinish){
+			right_btn_recommend.setTextColor(getResources().getColor(color.black));
+			right_btn_hot.setTextColor(getResources().getColor(color.black));	
+			right_btn_new.setTextColor(getResources().getColor(color.black));	
+			right_btn_willtofinish.setTextColor(getResources().getColor(color.red));
+			
+		}
 		
 	}
 

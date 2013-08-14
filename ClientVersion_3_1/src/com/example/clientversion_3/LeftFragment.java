@@ -75,8 +75,12 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 	public void onClick(View v) {
 
 		if (v.getId() == R.id.left_iv_userhead) {
-			intent = new Intent(context, LoginActivity.class);
-			startActivityForResult(intent, QQREQUESTCODE);
+//			intent = new Intent(context, LoginActivity.class);
+//			startActivityForResult(intent, QQREQUESTCODE);
+//			ActivityStartAnim.DownToUp(activity);
+			
+			intent = new Intent(context, RLoginActivity.class);
+			startActivity(intent);
 			ActivityStartAnim.DownToUp(activity);
 		} 
 		else if (v.getId() == R.id.left_btn_attention) {

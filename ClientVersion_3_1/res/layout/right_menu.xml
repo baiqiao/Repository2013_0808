@@ -57,7 +57,7 @@
 			            android:textSize="21sp"
 			            android:background="#00000000"
 			            android:text="@string/recommendedopt"
-			            android:textColor="@color/pink"
+			            android:textColor="@color/red"
 			            mybutton:icon="@drawable/right_iv_recommend_check" >
 			        </com.example.clientversion_3.view.ImageTextButton>
 				        

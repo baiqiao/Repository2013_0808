@@ -69,6 +69,6 @@
         android:layout_centerHorizontal="true"
         android:text="推荐项目"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/pink" />
+        android:textColor="@color/red" />
 
 </RelativeLayout>

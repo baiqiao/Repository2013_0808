@@ -35,17 +35,17 @@
         <activity 
             android:name="com.example.clientversion_3.MasterActivity2"
             android:label="ClientVersion_2"> 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         
         <activity 
             android:name="com.example.clientversion_3.MasterActivity3"
             android:label="ClientVersion_3_3"> 
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
         <activity android:name="com.example.clientversion_3.LoginActivity"> </activity>
@@ -67,6 +67,12 @@
         <activity android:name="com.example.clientversion_3.ProvinceListActivity"> </activity>
         
         <activity android:name="com.example.clientversion_3.CityListActivity"> </activity>
+        
+        <activity android:name="com.example.clientversion_3.RLoginActivity"> </activity>
+        
+        <activity android:name="com.example.clientversion_3.RegisterActivity"> </activity>
+        
+        <activity android:name="com.example.clientversion_3.FindPasswordActivity"> </activity>
         
         
         <activity

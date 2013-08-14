@@ -81,7 +81,7 @@ public class ItemAdapter extends BaseAdapter {
 			holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
 			holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
 			holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-			holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
+			holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
 			holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
 			holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
 			holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");

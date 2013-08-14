@@ -28,7 +28,7 @@
 		    android:layout_centerHorizontal="true"
 		    android:layout_centerVertical="true"
 		    android:textSize="22sp"
-		    android:textColor="@color/pink"
+		    android:textColor="@color/red"
 		    android:text="一千只猫和玫瑰" />
 	    
 	</RelativeLayout>

@@ -36,7 +36,7 @@
             android:layout_alignBottom="@+id/optdetails_ibtn_back"
             android:layout_centerHorizontal="true"
             android:text="当代艺术驻地创作项目"
-            android:textColor="@color/pink"
+            android:textColor="@color/red"
             android:textSize="18sp" />
         
     </RelativeLayout>

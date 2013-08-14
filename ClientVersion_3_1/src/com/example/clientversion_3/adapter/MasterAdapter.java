@@ -66,7 +66,7 @@ public class MasterAdapter extends BaseAdapter {
 		masterpage_pbar.setProgress(proinfo.getProgressNum());
 		master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
 		master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-		master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
+		master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
 		master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
 		master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
 		master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");

@@ -62,7 +62,7 @@ public class AttentionAdapter extends BaseAdapter {
 		attentionpage_pbar.setProgress(proinfo.getProgressNum());
 		attention_item_tv_reachnum.setText(proinfo.getReachNum() + "%已达到");
 		attention_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-		attention_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
+		attention_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
 		attention_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
 		attention_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
 		attention_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
