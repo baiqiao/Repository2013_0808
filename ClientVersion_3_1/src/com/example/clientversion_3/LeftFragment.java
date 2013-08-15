@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3_1.R;
 import com.galhttprequest.GalHttpRequest;
@@ -37,7 +38,16 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 	private Activity activity;
 	private Intent intent;
 	private Button left_btn_discuss;
+	
+	
+	private static String EXTRA_TITLE;
+	private static String EXTRA_MESSAGE;
+	private int title;
+	private String message;
+	
 
+	public LeftFragment() {}
+	
 	public LeftFragment(Context context, Activity activity) {
 		this.context = context;
 		this.activity = activity;
@@ -138,5 +148,27 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 		}
 		return false;
 	}
-
+	
+	
+	
+	public static final LeftFragment newInstance(int title, String message)
+	{
+		LeftFragment f = new LeftFragment();
+	    Bundle bdl = new Bundle(2);
+	    bdl.putInt(EXTRA_TITLE, title);
+	    bdl.putString(EXTRA_MESSAGE, message);
+	    f.setArguments(bdl);
+	    return f;
+	}
+	/*
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+	    title = getArguments().getInt(EXTRA_TITLE);
+	    message = getArguments().getString(EXTRA_MESSAGE);
+	    //...
+	    //etc
+	    //...
+	}*/
+	
 }

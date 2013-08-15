@@ -694,7 +694,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int master_item_tv_sharenum=0x7f050087;
         public static final int master_item_tv_supportnum=0x7f050081;
         public static final int master_list_ll1=0x7f05007c;
-        public static final int master_list_ll2=0x7f0500ad;
         public static final int master_list_rl1=0x7f05007a;
         public static final int master_list_rl2=0x7f05007d;
         public static final int master_list_rl3=0x7f05007f;
@@ -707,6 +706,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int opt_discuss_num=0x7f0500b7;
         public static final int opt_getsuport_num=0x7f0500b0;
         public static final int opt_lasttime=0x7f0500b1;
+        public static final int opt_ll2=0x7f0500ad;
         public static final int opt_name=0x7f05002e;
         public static final int opt_progress=0x7f0500ae;
         public static final int opt_promoter_name=0x7f0500b5;

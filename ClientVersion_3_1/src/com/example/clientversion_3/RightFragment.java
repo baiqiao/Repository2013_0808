@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -31,10 +30,13 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	private Context context;
 
 	private ListView right_list;
-	private ImageTextButton right_btn_recommend;
-	private ImageTextButton right_btn_hot;
-	private ImageTextButton right_btn_new;
-	private ImageTextButton right_btn_willtofinish;
+	private ImageTextButton right_btn_recommend;			//currentSelect = R.id.right_btn_recommend			
+	private ImageTextButton right_btn_hot;					//currentSelect = R.id.right_btn_hot				
+	private ImageTextButton right_btn_new;					//currentSelect = R.id.right_btn_new				
+	private ImageTextButton right_btn_willtofinish;			//currentSelect = R.id.right_btn_willtofinish		
+	
+	private int currentSelect = R.id.right_btn_recommend;
+	private int lastSelect = R.id.right_btn_recommend;
 	private RightAdapter radapter;
 	
 	private SlidingMenu slidingMenu;
@@ -95,51 +97,105 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		
-		
-		if(event.getAction() == MotionEvent.ACTION_DOWN) {
-			((ImageTextButton)v).setTextColor(getResources().getColor(color.red));
-			//((ImageTextButton)v).setIcon(drawable.arrow_up);
-			((ImageTextButton)v).invalidate();
+		if(v.getId() != currentSelect) {
+			if(event.getAction() == MotionEvent.ACTION_DOWN) {
+				((ImageTextButton)v).setTextColor(getResources().getColor(color.red));
+				switch(v.getId()){
+				case R.id.right_btn_recommend:
+					
+					break;
+				case R.id.right_btn_hot :	
+					((ImageTextButton)v).setIcon(drawable.arrow_up);
+					break;
+				case R.id.right_btn_new:
+					break;
+				case R.id.right_btn_willtofinish:
+					break;
+				default:
+					break;	
+				}
+				((ImageTextButton)v).invalidate();
+			}
+			else {
+				((ImageTextButton)v).setTextColor(getResources().getColor(color.black));
+				switch(v.getId()){
+				case R.id.right_btn_recommend:
+					
+					break;
+				case R.id.right_btn_hot :
+					((ImageTextButton)v).setIcon(drawable.right_iv_hot_uncheck);
+					break;
+				case R.id.right_btn_new:
+					break;
+				case R.id.right_btn_willtofinish:
+					break;
+				default:
+					break;	
+				}
+				((ImageTextButton)v).invalidate();
+			}
 		}
-		else {
-			((ImageTextButton)v).setTextColor(getResources().getColor(color.black));
-			((ImageTextButton)v).invalidate();
-		}
-		
 		return false;
 	}
 
 	@Override
 	public void onClick(View v) {
+		
+		currentSelect = v.getId();
+		/*		
 		if(v.getId() == R.id.right_btn_recommend){
-			right_btn_recommend.setTextColor(getResources().getColor(color.red));
-			right_btn_hot.setTextColor(getResources().getColor(color.black));	
-			right_btn_new.setTextColor(getResources().getColor(color.black));	
-			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
-			
+			clickHelper(currentSelect, lastSelect);
 		}
 		if(v.getId() == R.id.right_btn_hot){
-			right_btn_recommend.setTextColor(getResources().getColor(color.black));
-			right_btn_hot.setTextColor(getResources().getColor(color.red));	
-			right_btn_new.setTextColor(getResources().getColor(color.black));	
-			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
-			
+			clickHelper(currentSelect, lastSelect);
 		}
 		if(v.getId() == R.id.right_btn_new){
-			right_btn_recommend.setTextColor(getResources().getColor(color.black));
-			right_btn_hot.setTextColor(getResources().getColor(color.black));	
-			right_btn_new.setTextColor(getResources().getColor(color.red));	
-			right_btn_willtofinish.setTextColor(getResources().getColor(color.black));	
-			
+			clickHelper(currentSelect, lastSelect);
 		}
 		if(v.getId() == R.id.right_btn_willtofinish){
-			right_btn_recommend.setTextColor(getResources().getColor(color.black));
-			right_btn_hot.setTextColor(getResources().getColor(color.black));	
-			right_btn_new.setTextColor(getResources().getColor(color.black));	
-			right_btn_willtofinish.setTextColor(getResources().getColor(color.red));
-			
+			clickHelper(currentSelect, lastSelect);
 		}
+		*/
+		clickHelper(currentSelect, lastSelect);
 		
+		lastSelect = currentSelect;
 	}
-
+	
+	private void clickHelper(int currentSelect, int lastSelect) {
+		if(currentSelect != lastSelect) {
+			switch(currentSelect){
+			case R.id.right_btn_recommend:
+				right_btn_recommend.setTextColor(getResources().getColor(color.red));
+				break;
+			case R.id.right_btn_hot :
+				right_btn_hot.setTextColor(getResources().getColor(color.red));	
+				break;
+			case R.id.right_btn_new:
+				right_btn_new.setTextColor(getResources().getColor(color.red));
+				break;
+			case R.id.right_btn_willtofinish:
+				right_btn_willtofinish.setTextColor(getResources().getColor(color.red));
+				break;
+			default:
+				break;	
+			}
+			
+			switch(lastSelect) {
+			case R.id.right_btn_recommend:
+				right_btn_recommend.setTextColor(getResources().getColor(color.black));
+				break;
+			case R.id.right_btn_hot :
+				right_btn_hot.setTextColor(getResources().getColor(color.black));	
+				break;
+			case R.id.right_btn_new:
+				right_btn_new.setTextColor(getResources().getColor(color.black));
+				break;
+			case R.id.right_btn_willtofinish:
+				right_btn_willtofinish.setTextColor(getResources().getColor(color.black));
+				break;
+			default:
+				break;	
+			}
+		}
+	}
 }

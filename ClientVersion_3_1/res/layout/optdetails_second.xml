@@ -81,7 +81,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_centerVertical="true"
-	        android:layout_above="@+id/master_list_ll2"
+	        android:layout_above="@+id/opt_ll2"
 	        android:layout_marginRight="10dip"
 	        android:layout_marginLeft="10dip"
 	        android:paddingBottom="8dp"
@@ -98,7 +98,7 @@
 	    </LinearLayout>
 	
 	    <LinearLayout
-	        android:id="@+id/master_list_ll2"
+	        android:id="@+id/opt_ll2"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentBottom="true"

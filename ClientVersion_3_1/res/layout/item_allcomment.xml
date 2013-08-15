@@ -11,80 +11,86 @@
         android:background="@drawable/personal_setting_bg" >
     </LinearLayout>
     
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        
-        <LinearLayout
+    <LinearLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
         
         <LinearLayout
-            android:layout_width="15dp"
+            android:layout_width="10dp"
             android:layout_height="fill_parent"
             android:background="@drawable/personal_setting_bg" >
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/item_allcomm_headgraph"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="15dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_launcher" />
-
-        <LinearLayout
+        
+        <RelativeLayout 
             android:layout_width="0dip"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="12dp"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
+            android:paddingBottom="8dp">
+            
+             <ImageView
+	            android:id="@+id/item_allcomm_headgraph"
+	            android:layout_marginLeft="8dp"
+	            android:layout_marginTop="12dp"
+	            android:layout_width="50dp"
+	            android:layout_height="50dp"
+	            android:layout_alignParentLeft="true"
+	            android:layout_alignParentTop="true"
+	            android:src="@drawable/ic_launcher" />
+             
+             <RelativeLayout 
+                 android:id="@+id/rl1"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 android:layout_marginLeft="12dp"
+                 android:layout_toRightOf="@+id/item_allcomm_headgraph">
+                 
+                 <TextView
                     android:id="@+id/item_allcomm_username"
-                    android:layout_width="0dip"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:text="username"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/item_allcomm_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentRight="true"
                     android:text="time"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <TextView
+                    android:textColor="@color/color_qianhui"
+                    android:textSize="16sp" />
+                 
+             </RelativeLayout>
+             
+             <TextView
                 android:id="@+id/item_allcomm_comment"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/item_allcomm_headgraph"
+                android:layout_below="@+id/rl1"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:text="comment"
                 android:textColor="@color/color_qianhui"
-                android:textSize="18sp" />
-        </LinearLayout>
-
+                android:textSize="15sp" />
+             
+             
+            
+        </RelativeLayout>
+        
         <LinearLayout
             android:layout_width="15dp"
             android:layout_height="fill_parent"
             android:background="@drawable/personal_setting_bg" >
         </LinearLayout>
+       
     </LinearLayout>
-
-        
-
-    </RelativeLayout>
-
     
 
 </LinearLayout>

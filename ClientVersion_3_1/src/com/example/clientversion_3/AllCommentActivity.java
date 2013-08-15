@@ -84,16 +84,22 @@ public class AllCommentActivity extends Activity {
 		for (int i = 0; i < 50; i++) {
 			CommentItem commentItem = new CommentItem();
 			commentItem.username = "张三" + i + "号";
-			commentItem.time = "8:" + i * 2;
+			
+			if(i / 24 == 0) {
+				commentItem.time = i + "小时前";
+			}
+			else{
+				commentItem.time = i/24 + "天前";
+			}
 
 			if (i % 3 == 0) {
-				commentItem.comment = "让更多的人看到。江西6岁的小女孩丁香小慧家住上......";
+				commentItem.comment = "分享家园——准备在耶鲁傻愣实施的当地艺术驻地创作项目#上线了！";
 				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/8921FA65ECA420A544383EE050AEB152/100";
 			} else if (i % 3 == 1) {
-				commentItem.comment = "面对，不一定最难过。孤独，不一定不快乐。得到，不一定能长久。失去，不一定不再拥有。不要因为寂寞而错爱，不要因为错爱而寂寞一生。——徐志摩【早安】";
+				commentItem.comment = "新图出炉了~";
 				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/359EB7CFAE1D491431624EA5A6EC2EFB/100";
 			} else {
-				commentItem.comment = "简单的纯色衬衫，总是能衬托出男人最帅气的一面,这件很不错。";
+				commentItem.comment = "很喜欢手环，原色的很有质感。有种皮质人生的味道。";
 				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/2742189F92589C79E82264478841599D/100";
 			}
 			commentItems.add(commentItem);

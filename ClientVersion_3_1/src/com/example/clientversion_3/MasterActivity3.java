@@ -276,4 +276,6 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 		
 	}
 
+	
+	
 }

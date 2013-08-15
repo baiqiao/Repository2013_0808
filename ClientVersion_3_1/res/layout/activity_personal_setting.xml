@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:background="#00000000"
+                android:layout_marginLeft="12dp"
                 android:src="@drawable/title_ibtn_back" />
 
             <TextView
