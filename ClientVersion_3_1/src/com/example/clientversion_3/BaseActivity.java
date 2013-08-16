@@ -5,6 +5,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public abstract class BaseActivity extends SlidingFragmentActivity{
 	
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
+	protected static ImageLoader imageLoader = ImageLoader.getInstance();
 	
 }

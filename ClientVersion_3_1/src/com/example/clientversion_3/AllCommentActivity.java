@@ -2,8 +2,11 @@ package com.example.clientversion_3;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -21,34 +24,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.clientversion_3.entity.CommentItem;
+import com.example.clientversion_3.util.Constants;
 import com.example.clientversion_3_1.R;
 import com.galhttprequest.GalHttpRequest;
-import com.galhttprequest.GalHttpRequest.GalHttpLoadImageCallBack;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class AllCommentActivity extends Activity {
 
 	private LayoutInflater inflater; // 布局器
-
 	private List<CommentItem> commentItems = new ArrayList<CommentItem>();
-
 	private AllCommentAdapter allCommentAdapter;
-
 	private ListView mListView;
-
 	private EditText allcomment_et_comment;
-
 	private Button allcomment_btn_send;
-
 	private Date currentDate;
-
 	private SimpleDateFormat format;
-
 	private ImageButton title_perset_ibtn_back;
+	
+	
+	/**图片加载相关因素*/
+	//private ImageLoader imageLoader = ImageLoader.getInstance();
+	private DisplayImageOptions options;
+	private ImageLoadingListener animateFirstListener;
+	
 
 	private Handler mHandler = new Handler() {
 
@@ -68,6 +74,16 @@ public class AllCommentActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_allcomment);
+		
+		options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.ic_stub)
+		.showImageForEmptyUri(R.drawable.ic_empty)
+		.showImageOnFail(R.drawable.ic_error)
+		.cacheInMemory(true)
+		.cacheOnDisc(true)
+		.displayer(new RoundedBitmapDisplayer(10))
+		.build();
+		animateFirstListener = new AnimateFirstDisplayListener();
 
 		currentDate = new Date(System.currentTimeMillis());
 		format = new SimpleDateFormat("HH:mm");
@@ -81,7 +97,7 @@ public class AllCommentActivity extends Activity {
 		title_perset_ibtn_back = (ImageButton) this
 				.findViewById(R.id.title_perset_ibtn_back);
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 39; i++) {
 			CommentItem commentItem = new CommentItem();
 			commentItem.username = "张三" + i + "号";
 			
@@ -94,14 +110,15 @@ public class AllCommentActivity extends Activity {
 
 			if (i % 3 == 0) {
 				commentItem.comment = "分享家园——准备在耶鲁傻愣实施的当地艺术驻地创作项目#上线了！";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/8921FA65ECA420A544383EE050AEB152/100";
+				
 			} else if (i % 3 == 1) {
 				commentItem.comment = "新图出炉了~";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/359EB7CFAE1D491431624EA5A6EC2EFB/100";
+				
 			} else {
 				commentItem.comment = "很喜欢手环，原色的很有质感。有种皮质人生的味道。";
-				commentItem.headgraphUrl = "http://q.qlogo.cn/qqapp/222222/2742189F92589C79E82264478841599D/100";
-			}
+				}
+			commentItem.headgraphUrl = Constants.IMAGES[i];
+			
 			commentItems.add(commentItem);
 		}
 		inflater = this.getLayoutInflater();
@@ -116,7 +133,7 @@ public class AllCommentActivity extends Activity {
 				allcomment_et_comment.setText("");
 				ci.username = "流氓会武术";
 				ci.time = format.format(currentDate);
-				ci.headgraphUrl = "http://s16.sinaimg.cn/orignal/89429f6dhb99b4903ebcf&690";
+				ci.headgraphUrl = "https://lh4.googleusercontent.com/-wF2Vc9YDutw/T3R41fR2BCI/AAAAAAAAAJc/JdU1sHdMRAk/s1024/sample_image_38.jpg";
 				commentItems.add(ci);
 				mHandler.sendEmptyMessage(0);
 			}
@@ -158,38 +175,77 @@ public class AllCommentActivity extends Activity {
 		public long getItemId(int position) {
 			return position;
 		}
+		
+		private class ViewHolder {
+			ImageView img_headgraph;
+			TextView tv_username;
+			TextView tv_time;
+			TextView tv_comment;
+		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
-			LinearLayout view = (LinearLayout) inflater.inflate(
-					R.layout.item_allcomment, null);
+			View view = convertView;
+			final ViewHolder holder;
+			CommentItem commentItem = commentItems.get(position);
+			
+			if (convertView == null) {
+				view = inflater.inflate(R.layout.item_allcomment, null);
+				holder = new ViewHolder();
 
-			final CommentItem commentItem = commentItems.get(position);
-			final ImageView img_headgraph = (ImageView) view
-					.findViewById(R.id.item_allcomm_headgraph);
-			TextView tv_username = (TextView) view
-					.findViewById(R.id.item_allcomm_username);
-			TextView tv_time = (TextView) view
-					.findViewById(R.id.item_allcomm_time);
-			TextView tv_comment = (TextView) view
-					.findViewById(R.id.item_allcomm_comment);
-
-			request = GalHttpRequest.requestWithURL(AllCommentActivity.this,
+				holder.img_headgraph = (ImageView) view.findViewById(R.id.item_allcomm_headgraph);
+				holder.tv_username = (TextView) view.findViewById(R.id.item_allcomm_username);
+				holder.tv_time = (TextView) view.findViewById(R.id.item_allcomm_time);
+				holder.tv_comment = (TextView) view.findViewById(R.id.item_allcomm_comment);
+				
+				view.setTag(holder);
+			} else {
+				holder = (ViewHolder) view.getTag();
+			}
+			
+			holder.tv_username.setText(commentItem.username);
+			holder.tv_time.setText(commentItem.time);
+			holder.tv_comment.setText(commentItem.comment);
+			Log.i("ttt", "aaa");
+			
+			
+			/*request = GalHttpRequest.requestWithURL(AllCommentActivity.this,
 					commentItem.headgraphUrl);
 			request.startAsynRequestBitmap(new GalHttpLoadImageCallBack() {
 				@Override
 				public void imageLoaded(Bitmap bitmap) {
 					img_headgraph.setImageBitmap(bitmap);
 				}
-			});
+			});*/
 
-			tv_username.setText(commentItem.username);
-			tv_time.setText(commentItem.time);
-			tv_comment.setText(commentItem.comment);
-			Log.i("ttt", "aaa");
+			BaseActivity.imageLoader.displayImage(commentItem.headgraphUrl, holder.img_headgraph, options, animateFirstListener);
+			
 			return view;
 
+		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		AnimateFirstDisplayListener.displayedImages.clear();
+		super.onBackPressed();
+	}
+	
+	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+		@Override
+		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+			if (loadedImage != null) {
+				ImageView imageView = (ImageView) view;
+				boolean firstDisplay = !displayedImages.contains(imageUri);
+				if (firstDisplay) {
+					FadeInBitmapDisplayer.animate(imageView, 500);
+					displayedImages.add(imageUri);
+				}
+			}
 		}
 	}
 }

@@ -92,7 +92,6 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 		.showImageOnFail(R.drawable.ic_error)
 		.cacheInMemory(true)
 		.cacheOnDisc(true)
-		.displayer(new RoundedBitmapDisplayer(20))
 		.build();
        animateFirstListener = new AnimateFirstDisplayListener();
        

@@ -1,7 +1,12 @@
 package com.example.clientversion_3;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,15 +21,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.clientversion_3.entity.ProjectInfo;
 import com.example.clientversion_3_1.R;
 import com.example.clientversion_3_1.R.color;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class OptDetailsActivity extends Activity implements OnClickListener, OnTouchListener{
 
 	private ImageButton optdetails_ibtn_back;
 	private ImageView optdetails_iv_promoter_head;
+	private ImageView optdetails_iv_bg;
 	private LinearLayout details_texts;
+	private ProjectInfo projectinfo;
 	private Intent intent;
+	private String key;
+	private UILApplication UilApplication;
+	private DisplayImageOptions options;
+	private ImageLoadingListener animateFirstListener;
 	
 	private String[] strs = {
 		"   新华网北京８月９日电（记者陈炜伟、张晓松）审计署９日发布的２０１２年城镇保障性安居工程跟踪审计结果显示，３６０个项目或单位挪用保障性安居工程专项资金５７．９９亿元，用于归还贷款、对外投资、征地拆迁以及单位资金周转等非保障性安居工程项目支出。",
@@ -41,14 +57,31 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_optdetails);
 		
+		key = getIntent().getStringExtra("KEY");
+		UilApplication = (UILApplication)getApplication();  
+		projectinfo = (ProjectInfo)UilApplication.getHashmap().get(key);
+		
+		options = new DisplayImageOptions.Builder()
+		.showStubImage(R.drawable.ic_stub)
+		.showImageForEmptyUri(R.drawable.ic_empty)
+		.showImageOnFail(R.drawable.ic_error)
+		.cacheInMemory(true)
+		.cacheOnDisc(true)
+		.build();
+		animateFirstListener = new AnimateFirstDisplayListener();
+		
+		
 		details_texts = (LinearLayout)this.findViewById(R.id.details_texts);
 		optdetails_iv_promoter_head = (ImageView)this.findViewById(R.id.optdetails_iv_promoter_head);
 		optdetails_ibtn_back = (ImageButton)this.findViewById(R.id.optdetails_ibtn_back);
+		optdetails_iv_bg = (ImageView)this.findViewById(R.id.optdetails_iv_bg);
 		
 		optdetails_ibtn_back.setOnClickListener(this);
 		optdetails_ibtn_back.setOnTouchListener(this);
 		optdetails_iv_promoter_head.setOnClickListener(this);
 		optdetails_iv_promoter_head.setOnTouchListener(this);
+		
+		
 		
 		new Thread(new Runnable() {
 			@Override
@@ -63,11 +96,15 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 		
 		
 	}
+	
 	private Handler mHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
+			
+			BaseActivity.imageLoader.displayImage(projectinfo.getImageUrl(), optdetails_iv_bg, options, animateFirstListener);
+			
 			String[] s =(String[]) msg.obj;
 			for(int i = 0; i<s.length; i++){
 				Log.d("HANDLER", i +"");
@@ -107,6 +144,28 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 		return false;
 	}
 	
+	@Override
+	public void onBackPressed() {
+		AnimateFirstDisplayListener.displayedImages.clear();
+		UilApplication.getHashmap().clear();
+		super.onBackPressed();
+	}
 	
+	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+		@Override
+		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+			if (loadedImage != null) {
+				ImageView imageView = (ImageView) view;
+				boolean firstDisplay = !displayedImages.contains(imageUri);
+				if (firstDisplay) {
+					FadeInBitmapDisplayer.animate(imageView, 500);
+					displayedImages.add(imageUri);
+				}
+			}
+		}
+	}
 
 }

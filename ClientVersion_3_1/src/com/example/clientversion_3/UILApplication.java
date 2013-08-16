@@ -15,12 +15,15 @@
  *******************************************************************************/
 package com.example.clientversion_3;
 
+import java.util.HashMap;
+
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
+import com.example.clientversion_3.entity.ProjectInfo;
 import com.example.clientversion_3.util.Constants.Config;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -59,5 +62,15 @@ public class UILApplication extends Application {
 				.build();
 		// Initialize ImageLoader with configuration.
 		ImageLoader.getInstance().init(config);
+	}
+	
+	private HashMap<String, Object> hashmap = new HashMap<String, Object>();
+	
+	public HashMap<String, Object> getHashmap() {
+		return hashmap;
+	}
+
+	public void setHashmap(HashMap<String, Object> hashmap) {
+		this.hashmap = hashmap;
 	}
 }

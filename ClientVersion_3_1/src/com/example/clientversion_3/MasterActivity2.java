@@ -2,6 +2,7 @@ package com.example.clientversion_3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +39,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class MasterActivity2 extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
 	OnItemClickListener,RTPullListView.OnRefreshListener  {
@@ -57,6 +57,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 	private LayoutInflater inflater;
 	private Intent intent;
 	
+	private UILApplication UilApplication; 
 	
 	/**图片加载相关因素*/
 	//private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -80,6 +81,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
        
+       UilApplication = (UILApplication)getApplication();  
        inflater = this.getLayoutInflater();
        options = new DisplayImageOptions.Builder()
 		.showStubImage(R.drawable.ic_stub)
@@ -87,7 +89,6 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 		.showImageOnFail(R.drawable.ic_error)
 		.cacheInMemory(true)
 		.cacheOnDisc(true)
-		.displayer(new RoundedBitmapDisplayer(20))
 		.build();
        animateFirstListener = new AnimateFirstDisplayListener();
        
@@ -250,19 +251,19 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 				holder.master_item_tv_discussnum = (TextView)view.findViewById(R.id.master_item_tv_discussnum);
 				holder.master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
 				
-				holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
-				holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
-				holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-				holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余时间");
-				holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
-				holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
-				holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
-				
 				view.setTag(holder);
 			} 
 			else {
 				holder = (ViewHolder) view.getTag();
 			}
+			
+			holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
+			holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
+			holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
+			holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
+			holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
+			holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
+			holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
 
 			imageLoader.displayImage(proinfo.getImageUrl(), holder.master_item_iv_bg, options, animateFirstListener);
 
@@ -323,10 +324,16 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
+		
+		/*将复杂数据放入到 Application对象中，达到共享目的*/
+		HashMap<String, Object> projectInfo = new HashMap<String, Object>();
+		projectInfo.put("projectinfo", itemAdapter.getItem(arg2));
+		UilApplication.setHashmap(projectInfo);
+		
 		intent = new Intent(MasterActivity2.this, OptDetailsActivity.class);
+		intent.putExtra("KEY", "projectinfo");
 		startActivity(intent);
-		ActivityStartAnim.LeftToRight(this);
+		ActivityStartAnim.RightToLeft(this);
 		
 	}
 

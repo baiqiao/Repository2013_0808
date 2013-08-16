@@ -51,7 +51,7 @@ public class ItemAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return proinfos.get(position - 1);
 	}
 
 	@Override
@@ -78,19 +78,19 @@ public class ItemAdapter extends BaseAdapter {
 			holder.master_item_tv_discussnum = (TextView)view.findViewById(R.id.master_item_tv_discussnum);
 			holder.master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
 			
-			holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
-			holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
-			holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-			holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
-			holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
-			holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
-			holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
-			
 			view.setTag(holder);
 		} 
 		else {
 			holder = (ViewHolder) view.getTag();
 		}
+		
+		holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
+		holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
+		holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
+		holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
+		holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
+		holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
+		holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
 
 		imageLoader.displayImage(proinfo.getImageUrl(), holder.master_item_iv_bg, options, animateFirstListener);
 

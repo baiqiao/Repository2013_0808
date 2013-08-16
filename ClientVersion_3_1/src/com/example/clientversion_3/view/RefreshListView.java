@@ -43,7 +43,7 @@ import com.example.clientversion_3_1.R;
 public class RefreshListView extends ListView implements OnScrollListener {
 
  
-
+	private float originalTop;
     private float mDownY;
     private float mMoveY;
     private int mHeaderHeight;
@@ -133,19 +133,18 @@ public class RefreshListView extends ListView implements OnScrollListener {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mDownY = ev.getY();
-                
+                Log.d("TTT", originalTop + "");
                 break;
             case MotionEvent.ACTION_MOVE:
 
                 mMoveY = ev.getY();
-                if (mPullRefreshState == OVER_PULL_REFRESH) {
+                if (mPullRefreshState == ENTER_PULL_REFRESH || mPullRefreshState == OVER_PULL_REFRESH) {
                     mHeaderLinearLayout.setPadding(mHeaderLinearLayout.getPaddingLeft(),
                             (int)((mMoveY - mDownY)/10),
                             mHeaderLinearLayout.getPaddingRight(),
                             mHeaderLinearLayout.getPaddingBottom());
                 }
                 
-                break;
                 
             //松手后我们需要一个柔性的反弹效果，意味着我们弹回去的过程需要分一步步走,我的解决方案是：
             //在子线程里计算PaddingTop，并减少到原来的3/4，循环通知主线程，直到PaddingTop小于1(这个值取一个小值，合适即可)。
