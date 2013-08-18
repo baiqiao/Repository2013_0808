@@ -48,6 +48,7 @@ public class AllCommentActivity extends Activity {
 	private Date currentDate;
 	private SimpleDateFormat format;
 	private ImageButton title_perset_ibtn_back;
+	private UILApplication UilApplication; 
 	
 	
 	/**图片加载相关因素*/
@@ -74,6 +75,7 @@ public class AllCommentActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_allcomment);
+		UilApplication = (UILApplication)getApplication();  
 		
 		options = new DisplayImageOptions.Builder()
 		.showStubImage(R.drawable.ic_stub)
@@ -185,23 +187,21 @@ public class AllCommentActivity extends Activity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-
-			View view = convertView;
 			final ViewHolder holder;
 			CommentItem commentItem = commentItems.get(position);
 			
 			if (convertView == null) {
-				view = inflater.inflate(R.layout.item_allcomment, null);
+				convertView = inflater.inflate(R.layout.item_allcomment, null);
 				holder = new ViewHolder();
 
-				holder.img_headgraph = (ImageView) view.findViewById(R.id.item_allcomm_headgraph);
-				holder.tv_username = (TextView) view.findViewById(R.id.item_allcomm_username);
-				holder.tv_time = (TextView) view.findViewById(R.id.item_allcomm_time);
-				holder.tv_comment = (TextView) view.findViewById(R.id.item_allcomm_comment);
+				holder.img_headgraph = (ImageView) convertView.findViewById(R.id.item_allcomm_headgraph);
+				holder.tv_username = (TextView) convertView.findViewById(R.id.item_allcomm_username);
+				holder.tv_time = (TextView) convertView.findViewById(R.id.item_allcomm_time);
+				holder.tv_comment = (TextView) convertView.findViewById(R.id.item_allcomm_comment);
 				
-				view.setTag(holder);
+				convertView.setTag(holder);
 			} else {
-				holder = (ViewHolder) view.getTag();
+				holder = (ViewHolder) convertView.getTag();
 			}
 			
 			holder.tv_username.setText(commentItem.username);
@@ -219,9 +219,9 @@ public class AllCommentActivity extends Activity {
 				}
 			});*/
 
-			BaseActivity.imageLoader.displayImage(commentItem.headgraphUrl, holder.img_headgraph, options, animateFirstListener);
+			UilApplication.getImageLoader().displayImage(commentItem.headgraphUrl, holder.img_headgraph, options, animateFirstListener);
 			
-			return view;
+			return convertView;
 
 		}
 	}

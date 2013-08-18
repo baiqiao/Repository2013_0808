@@ -103,7 +103,7 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			
-			BaseActivity.imageLoader.displayImage(projectinfo.getImageUrl(), optdetails_iv_bg, options, animateFirstListener);
+			UilApplication.getImageLoader().displayImage(projectinfo.getImageUrl(), optdetails_iv_bg, options, animateFirstListener);
 			
 			String[] s =(String[]) msg.obj;
 			for(int i = 0; i<s.length; i++){

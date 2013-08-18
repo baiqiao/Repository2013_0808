@@ -5,9 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.example.clientversion_3.view.SlidingMenu;
+import com.example.clientversion_3.view.lib.SlidingFragmentActivity;
 import com.example.clientversion_3_1.R;
 
-public class MasterBaseActivity extends BaseActivity {
+public class MasterBaseActivity extends SlidingFragmentActivity {
 
     protected Fragment    mFrag;
     protected SlidingMenu slidingMenu;

@@ -23,7 +23,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
-import com.example.clientversion_3.entity.ProjectInfo;
 import com.example.clientversion_3.util.Constants.Config;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -65,6 +64,7 @@ public class UILApplication extends Application {
 	}
 	
 	private HashMap<String, Object> hashmap = new HashMap<String, Object>();
+	private ImageLoader imageLoader = ImageLoader.getInstance();
 	
 	public HashMap<String, Object> getHashmap() {
 		return hashmap;
@@ -73,4 +73,14 @@ public class UILApplication extends Application {
 	public void setHashmap(HashMap<String, Object> hashmap) {
 		this.hashmap = hashmap;
 	}
+	
+	public ImageLoader getImageLoader() {
+		return imageLoader;
+	}
+
+	public void setImageLoader(ImageLoader imageLoader) {
+		this.imageLoader = imageLoader;
+	}
+
+	
 }

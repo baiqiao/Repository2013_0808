@@ -103,7 +103,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
        pullListView.setDividerHeight(0);
        pullListView.setMore(true);
        this.addLists(originalNum);
-       itemAdapter = new ItemAdapter(imageLoader, options, animateFirstListener, proinfos, inflater);
+       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
        pullListView.setAdapter(itemAdapter);
        pullListView.setonRefreshListener(this);
        pullListView.setOnItemClickListener(this);
@@ -286,6 +286,13 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		AnimateFirstDisplayListener.displayedImages.clear();
+		UilApplication.getImageLoader().stop();
+		super.onBackPressed();
 	}
 	
 	

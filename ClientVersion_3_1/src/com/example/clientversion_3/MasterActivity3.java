@@ -2,6 +2,7 @@ package com.example.clientversion_3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,6 +60,8 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 	private Intent intent;
 	private LinearLayout mLoadLayout;  			//容器，用于添加自定义listview
 	
+	private UILApplication UilApplication; 
+	
 	/**图片加载相关因素*/
 	private DisplayImageOptions options;
 	private ItemAdapter itemAdapter;
@@ -85,6 +88,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
        
+       UilApplication = (UILApplication)getApplication(); 
        inflater = this.getLayoutInflater();
        options = new DisplayImageOptions.Builder()
 		.showStubImage(R.drawable.ic_stub)
@@ -112,7 +116,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
        mLoadLayout.setGravity(Gravity.CENTER); 
        this.addLists(originalNum);
        refreshView.setMore(true);
-       itemAdapter = new ItemAdapter(imageLoader, options, animateFirstListener, proinfos, inflater);
+       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
        refreshView.setAdapter(itemAdapter);
        refreshView.setSelection(1);
        mLoadLayout.addView(refreshView, mTipContentLayoutParams);
@@ -269,7 +273,14 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		
+		/*将复杂数据放入到 Application对象中，达到共享目的*/
+		HashMap<String, Object> projectInfo = new HashMap<String, Object>();
+		projectInfo.put("projectinfo", itemAdapter.getItem(arg2));
+		UilApplication.setHashmap(projectInfo);
+		
 		intent = new Intent(MasterActivity3.this, OptDetailsActivity.class);
+		intent.putExtra("KEY", "projectinfo");
 		startActivity(intent);
 		ActivityStartAnim.RightToLeft(this);
 		

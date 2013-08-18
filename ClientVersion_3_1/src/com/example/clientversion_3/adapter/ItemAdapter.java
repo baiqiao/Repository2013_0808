@@ -32,18 +32,6 @@ public class ItemAdapter extends BaseAdapter {
 		this.inflater = inflater;
 	}
 
-	private class ViewHolder {
-		
-		ImageView master_item_iv_bg;
-		ProgressBar masterpage_pbar;
-		TextView master_item_tv_reachnum;
-		TextView master_item_tv_supportnum;
-		TextView master_item_tv_remaintime;
-		TextView master_item_tv_attentionnum;
-		TextView master_item_tv_discussnum;
-		TextView master_item_tv_sharenum;
-	}
-
 	@Override
 	public int getCount() {
 		return proinfos.size();
@@ -61,27 +49,25 @@ public class ItemAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		View view = convertView;
 		final ViewHolder holder;
 		ProjectInfo proinfo = proinfos.get(position);
-		
 		if (convertView == null) {
-			view = inflater.inflate(R.layout.item_master_page, parent, false);
+			convertView = inflater.inflate(R.layout.item_master_page, parent, false);
 			holder = new ViewHolder();
 			
-			holder.master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
-			holder.masterpage_pbar = (ProgressBar)view.findViewById(R.id.master_item_pbar);
-			holder.master_item_tv_reachnum = (TextView)view.findViewById(R.id.master_item_tv_reachnum);
-			holder.master_item_tv_supportnum = (TextView)view.findViewById(R.id.master_item_tv_supportnum);
-			holder.master_item_tv_remaintime = (TextView)view.findViewById(R.id.master_item_tv_remaintime);
-			holder.master_item_tv_attentionnum = (TextView)view.findViewById(R.id.master_item_tv_attentionnum);
-			holder.master_item_tv_discussnum = (TextView)view.findViewById(R.id.master_item_tv_discussnum);
-			holder.master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
+			holder.master_item_iv_bg = (ImageView)convertView.findViewById(R.id.master_item_iv_bg);
+			holder.masterpage_pbar = (ProgressBar)convertView.findViewById(R.id.master_item_pbar);
+			holder.master_item_tv_reachnum = (TextView)convertView.findViewById(R.id.master_item_tv_reachnum);
+			holder.master_item_tv_supportnum = (TextView)convertView.findViewById(R.id.master_item_tv_supportnum);
+			holder.master_item_tv_remaintime = (TextView)convertView.findViewById(R.id.master_item_tv_remaintime);
+			holder.master_item_tv_attentionnum = (TextView)convertView.findViewById(R.id.master_item_tv_attentionnum);
+			holder.master_item_tv_discussnum = (TextView)convertView.findViewById(R.id.master_item_tv_discussnum);
+			holder.master_item_tv_sharenum = (TextView)convertView.findViewById(R.id.master_item_tv_sharenum);
 			
-			view.setTag(holder);
+			convertView.setTag(holder);
 		} 
 		else {
-			holder = (ViewHolder) view.getTag();
+			holder = (ViewHolder) convertView.getTag();
 		}
 		
 		holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
@@ -94,7 +80,18 @@ public class ItemAdapter extends BaseAdapter {
 
 		imageLoader.displayImage(proinfo.getImageUrl(), holder.master_item_iv_bg, options, animateFirstListener);
 
-		return view;
+		return convertView;
+	}
+	
+	private class ViewHolder {
+		ImageView master_item_iv_bg;
+		ProgressBar masterpage_pbar;
+		TextView master_item_tv_reachnum;
+		TextView master_item_tv_supportnum;
+		TextView master_item_tv_remaintime;
+		TextView master_item_tv_attentionnum;
+		TextView master_item_tv_discussnum;
+		TextView master_item_tv_sharenum;
 	}
 
 }
