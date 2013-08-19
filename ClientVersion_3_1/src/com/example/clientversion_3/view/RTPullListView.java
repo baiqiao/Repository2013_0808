@@ -391,7 +391,7 @@ public class RTPullListView extends ListView implements OnScrollListener {
 		} 
 		else {
 			footer_layout.removeAllViews();
-			Toast.makeText(getContext(), "End of list", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getContext(), "End of list", Toast.LENGTH_SHORT).show();
 		}
 	}
 }  

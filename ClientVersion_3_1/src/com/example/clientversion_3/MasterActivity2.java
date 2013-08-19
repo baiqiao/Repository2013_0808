@@ -6,14 +6,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -21,13 +19,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.clientversion_3.adapter.ItemAdapter;
 import com.example.clientversion_3.entity.ProjectInfo;
@@ -41,12 +39,14 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class MasterActivity2 extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
-	OnItemClickListener,RTPullListView.OnRefreshListener  {
+	OnItemClickListener, RTPullListView.OnRefreshListener  {
+	
+	static final int HEADER_TITLE_SET = 0;
+	static final int LIST_DATA_SET = 1;
+	
 	private ImageButton leftBtn;
 	private ImageButton rightBtn; 
-	public static TextView tvHeaderTitle;
-	public Dialog dialog;
-	private Handler mHandler = new Handler();
+	private TextView tvHeaderTitle;
 	private boolean isLoadingMore = false;		//是否正在加载数据
 	private final int maxAount = 2000;			//设置了最大数据值
 	private int lastSize = 0;					//目前剩余可加载空间
@@ -55,7 +55,10 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 	private RTPullListView pullListView;
 	private List<ProjectInfo> proinfos = new ArrayList<ProjectInfo>();
 	private LayoutInflater inflater;
+	private LinearLayout master_loadingll;
 	private Intent intent;
+	public static Handler mHandler;
+	private String titleText;
 	
 	private UILApplication UilApplication; 
 	
@@ -65,7 +68,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 	private ItemAdapter itemAdapter;
 	private String[] imageUrls = Constants.IMAGES;
 	private ImageLoadingListener animateFirstListener;
-
+	
    @Override
    protected void onCreate(Bundle savedInstanceState) {
 	   
@@ -92,6 +95,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 		.build();
        animateFirstListener = new AnimateFirstDisplayListener();
        
+       master_loadingll = (LinearLayout)this.findViewById(R.id.master_loadingll);
        leftBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnLeft);
        rightBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnRigh);
        tvHeaderTitle = (TextView)this.findViewById(R.id.tvHeaderTitle);
@@ -102,38 +106,75 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
        pullListView = (RTPullListView) this.findViewById(R.id.lvhome2);
        pullListView.setDividerHeight(0);
        pullListView.setMore(true);
-       this.addLists(originalNum);
-       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
-       pullListView.setAdapter(itemAdapter);
        pullListView.setonRefreshListener(this);
        pullListView.setOnItemClickListener(this);
        
-       DialogView();
+//       addLists(originalNum);
+//       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
+//       pullListView.setAdapter(itemAdapter);
+       
+       
+       mHandler = new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+				switch(msg.what){
+				case HEADER_TITLE_SET:
+					String newTitle = (String)msg.obj;
+					titleText = tvHeaderTitle.getText().toString();
+					
+					if(!titleText.equals(newTitle)){
+						tvHeaderTitle.setText(newTitle);
+						master_loadingll.setVisibility(View.VISIBLE);
+//						pullListView.setVisibility(View.INVISIBLE);
+						
+						/*清空列表显示*/
+						proinfos.clear();
+		            	addLists(0);
+		            	pullListView.setMore(false);
+		            	itemAdapter.notifyDataSetChanged();
+						
+						
+						dataInit();
+					}
+					break;
+				
+					
+				case LIST_DATA_SET:
+					
+					itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
+					pullListView.setAdapter(itemAdapter);
+					master_loadingll.setVisibility(View.GONE);
+					pullListView.setVisibility(View.VISIBLE);
+					
+					break;
+					
+				default:
+					break;
+				}
+			}
+       };
+       
+       dataInit();
+       
    	}
+
+   private void dataInit() {
+	   mHandler.postDelayed(new Runnable() {  
+           @Override  
+           public void run() {  
+        	   
+        	   addLists(originalNum);
+        	   
+        	   Message msg = mHandler.obtainMessage();
+        	   msg.what = LIST_DATA_SET;
+        	   //msg.obj = options;
+        	   msg.sendToTarget();
+           }  
+       }, 3000);  
+   }
    
-   private void DialogView() {
-		
-		LinearLayout li=(LinearLayout)inflater.inflate(R.layout.dialog_loading,null);
-	   	
-	   	dialog = new Dialog(this);
-	   	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	   	Window win = dialog.getWindow();
-	   	WindowManager.LayoutParams lp = win.getAttributes();
-	   	
-	   	lp.alpha = 1.0f;
-	   	lp.dimAmount = 0.9f;
-	   	lp.x = 0;
-	   	lp.y = 0;
-	   	lp.width = 500;
-	   	lp.height = 300;
-	   	
-	   	win.setAttributes(lp);
-	   	win.setGravity(Gravity.CENTER);
-	   	li.setBackgroundColor(Color.WHITE);
-	   	LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(500, 300);
-	   	dialog.setContentView(li, ll);
-			
-	}
 
 	private void addLists(int n){
    	 	n += proinfos.size();
@@ -172,7 +213,6 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 		
 		if(!isLoadingMore) {
 			isLoadingMore = true;
-			
 			mHandler.postDelayed(new Runnable() {  
                 @Override  
                 public void run() {  
@@ -192,6 +232,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
                 	}
                 	else{
                 		pullListView.setMore(false);
+                		Toast.makeText(getApplicationContext(), "End of list", Toast.LENGTH_SHORT).show();
                 		isLoadingMore = false;
                 	}
                 }  
@@ -200,77 +241,6 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 		
 	}
 	
-	/*
-	private class ItemAdapter extends BaseAdapter {
-
-		private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-
-		private class ViewHolder {
-			
-			ImageView master_item_iv_bg;
-			ProgressBar masterpage_pbar;
-			TextView master_item_tv_reachnum;
-			TextView master_item_tv_supportnum;
-			TextView master_item_tv_remaintime;
-			TextView master_item_tv_attentionnum;
-			TextView master_item_tv_discussnum;
-			TextView master_item_tv_sharenum;
-		}
-
-		@Override
-		public int getCount() {
-			return proinfos.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			View view = convertView;
-			final ViewHolder holder;
-			ProjectInfo proinfo = proinfos.get(position);
-			
-			if (convertView == null) {
-				view = getLayoutInflater().inflate(R.layout.item_master_page, parent, false);
-				holder = new ViewHolder();
-				
-				holder.master_item_iv_bg = (ImageView)view.findViewById(R.id.master_item_iv_bg);
-				holder.masterpage_pbar = (ProgressBar)view.findViewById(R.id.master_item_pbar);
-				holder.master_item_tv_reachnum = (TextView)view.findViewById(R.id.master_item_tv_reachnum);
-				holder.master_item_tv_supportnum = (TextView)view.findViewById(R.id.master_item_tv_supportnum);
-				holder.master_item_tv_remaintime = (TextView)view.findViewById(R.id.master_item_tv_remaintime);
-				holder.master_item_tv_attentionnum = (TextView)view.findViewById(R.id.master_item_tv_attentionnum);
-				holder.master_item_tv_discussnum = (TextView)view.findViewById(R.id.master_item_tv_discussnum);
-				holder.master_item_tv_sharenum = (TextView)view.findViewById(R.id.master_item_tv_sharenum);
-				
-				view.setTag(holder);
-			} 
-			else {
-				holder = (ViewHolder) view.getTag();
-			}
-			
-			holder.masterpage_pbar.setProgress(proinfo.getProgressNum());
-			holder.master_item_tv_reachnum.setText(proinfo.getReachNum() + "%达到");
-			holder.master_item_tv_supportnum.setText(proinfo.getSupportNum() + "已获支持");
-			holder.master_item_tv_remaintime.setText(proinfo.getRemainTime() + "天剩余");
-			holder.master_item_tv_attentionnum.setText(proinfo.getAttentionNum() + "");
-			holder.master_item_tv_discussnum.setText(proinfo.getDiscussNum() + "");
-			holder.master_item_tv_sharenum.setText(proinfo.getSharedNum() + "");
-
-			imageLoader.displayImage(proinfo.getImageUrl(), holder.master_item_iv_bg, options, animateFirstListener);
-
-			return view;
-		}
-	}*/
-
 	private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
 
 		static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
@@ -340,7 +310,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 		intent = new Intent(MasterActivity2.this, OptDetailsActivity.class);
 		intent.putExtra("KEY", "projectinfo");
 		startActivity(intent);
-		ActivityStartAnim.RightToLeft(this);
+		ActivityStartAnim.RightToLeft2(this);
 		
 	}
 

@@ -9,9 +9,9 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
@@ -40,15 +39,17 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class MasterActivity3 extends MasterBaseActivity implements OnClickListener, OnTouchListener, 
 	OnItemClickListener, RefreshListView.RefreshListener{
+	
+	static final int HEADER_TITLE_SET = 0;
+	static final int LIST_DATA_SET = 1;
+	
 	private ImageButton leftBtn;
 	private ImageButton rightBtn; 
-	public static TextView tvHeaderTitle;
-	public Dialog dialog;
-	private Handler mHandler = new Handler();
+	private TextView tvHeaderTitle;
+	private Dialog dialog;
 	private boolean isLoadingMore = false;		//是否正在加载数据
 	private final int maxAount = 2000;			//设置了最大数据值
 	private int lastSize = 0;					//目前剩余可加载空间
@@ -59,7 +60,9 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 	private LayoutInflater inflater;
 	private Intent intent;
 	private LinearLayout mLoadLayout;  			//容器，用于添加自定义listview
-	
+	public static Handler mHandler = new Handler();
+	private String titleText;
+	private LinearLayout master_loadingll;
 	private UILApplication UilApplication; 
 	
 	/**图片加载相关因素*/
@@ -99,7 +102,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 		.build();
        animateFirstListener = new AnimateFirstDisplayListener();
        
-       
+       master_loadingll = (LinearLayout)this.findViewById(R.id.master_loadingll);
        leftBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnLeft);
        rightBtn = (ImageButton)this.findViewById(R.id.ivTitleBtnRigh);
        tvHeaderTitle = (TextView)this.findViewById(R.id.tvHeaderTitle);
@@ -114,40 +117,98 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
        
        mLoadLayout = (LinearLayout)findViewById(R.id.linearlayout_list);
        mLoadLayout.setGravity(Gravity.CENTER); 
-       this.addLists(originalNum);
+//       this.addLists(originalNum);
        refreshView.setMore(true);
-       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
-       refreshView.setAdapter(itemAdapter);
-       refreshView.setSelection(1);
+//       itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
+//       refreshView.setAdapter(itemAdapter);
+//       refreshView.setSelection(1);
        mLoadLayout.addView(refreshView, mTipContentLayoutParams);
        
-       DialogView();
+       mHandler = new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+				switch(msg.what){
+				case HEADER_TITLE_SET:
+					String newTitle = (String)msg.obj;
+					titleText = tvHeaderTitle.getText().toString();
+					
+					if(!titleText.equals(newTitle)){
+						tvHeaderTitle.setText(newTitle);
+						master_loadingll.setVisibility(View.VISIBLE);
+//						pullListView.setVisibility(View.INVISIBLE);
+						
+						/*清空列表显示*/
+						proinfos.clear();
+		            	addLists(0);
+		            	refreshView.setMore(false);
+		            	itemAdapter.notifyDataSetChanged();
+						
+						
+						dataInit();
+					}
+					break;
+				
+					
+				case LIST_DATA_SET:
+					
+					itemAdapter = new ItemAdapter(UilApplication.getImageLoader(), options, animateFirstListener, proinfos, inflater);
+					refreshView.setAdapter(itemAdapter);
+					refreshView.setSelection(1);
+					master_loadingll.setVisibility(View.GONE);
+					refreshView.setVisibility(View.VISIBLE);
+					
+					break;
+					
+				default:
+					break;
+				}
+			}
+       	};
+      
+       	dataInit();
        
    	}
    
-   private void DialogView() {
-		
-		LinearLayout li=(LinearLayout)inflater.inflate(R.layout.dialog_loading,null);
-	   	
-	   	dialog = new Dialog(this);
-	   	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	   	Window win = dialog.getWindow();
-	   	WindowManager.LayoutParams lp = win.getAttributes();
-	   	
-	   	lp.alpha = 1.0f;
-	   	lp.dimAmount = 0.9f;
-	   	lp.x = 0;
-	   	lp.y = 0;
-	   	lp.width = 500;
-	   	lp.height = 300;
-	   	
-	   	win.setAttributes(lp);
-	   	win.setGravity(Gravity.CENTER);
-	   	li.setBackgroundColor(Color.WHITE);
-	   	LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(500, 300);
-	   	dialog.setContentView(li, ll);
-			
-	}
+//   private void DialogView() {
+//		
+//		LinearLayout li=(LinearLayout)inflater.inflate(R.layout.dialog_loading,null);
+//	   	
+//	   	dialog = new Dialog(this);
+//	   	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//	   	Window win = dialog.getWindow();
+//	   	WindowManager.LayoutParams lp = win.getAttributes();
+//	   	
+//	   	lp.alpha = 1.0f;
+//	   	lp.dimAmount = 0.9f;
+//	   	lp.x = 0;
+//	   	lp.y = 0;
+//	   	lp.width = 500;
+//	   	lp.height = 300;
+//	   	
+//	   	win.setAttributes(lp);
+//	   	win.setGravity(Gravity.CENTER);
+//	   	li.setBackgroundColor(Color.WHITE);
+//	   	LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(500, 300);
+//	   	dialog.setContentView(li, ll);
+//			
+//	}
+   
+   private void dataInit() {
+	   mHandler.postDelayed(new Runnable() {  
+           @Override  
+           public void run() {  
+        	   
+        	   addLists(originalNum);
+        	   
+        	   Message msg = mHandler.obtainMessage();
+        	   msg.what = LIST_DATA_SET;
+        	   //msg.obj = options;
+        	   msg.sendToTarget();
+           }  
+       }, 3000);  
+   }
 
 	private void addLists(int n){
    	 	n += proinfos.size();

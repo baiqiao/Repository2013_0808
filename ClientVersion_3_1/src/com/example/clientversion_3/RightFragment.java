@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.example.clientversion_3.adapter.RightAdapter;
 import com.example.clientversion_3.util.ListInScrollHelper;
@@ -28,7 +30,7 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 
 	
 	private Context context;
-
+	private ScrollView right_scroll;
 	private ListView right_list;
 	private ImageTextButton right_btn_recommend;			//currentSelect = R.id.right_btn_recommend			
 	private ImageTextButton right_btn_hot;					//currentSelect = R.id.right_btn_hot				
@@ -40,7 +42,7 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	private RightAdapter radapter;
 	
 	private SlidingMenu slidingMenu;
-	
+	private String titleText;
 	
 	public RightFragment(Context context, SlidingMenu slidingMenu) {
 		this.context = context;
@@ -60,11 +62,14 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 		right_btn_willtofinish = (ImageTextButton)view.findViewById(R.id.right_btn_willtofinish);
 		right_list = (ListView)view.findViewById(R.id.right_list);
 		right_list.setDividerHeight(0);
+		right_scroll = (ScrollView)view.findViewById(R.id.right_scroll);
 		
 		
 		radapter = new RightAdapter(inflater);
 		right_list.setAdapter(radapter);
 		ListInScrollHelper.setListViewHeight(right_list);
+		right_scroll.smoothScrollTo(0, 0); 
+		
 		right_list.setOnItemClickListener(this);
 		right_btn_recommend.setOnClickListener(this);
 		right_btn_hot.setOnClickListener(this);
@@ -85,14 +90,6 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
     {
         super.onActivityCreated(savedInstanceState);
     }
-
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		//MasterActivity.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
-		MasterActivity2.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
-		//MasterActivity3.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
-		slidingMenu.showContent();
-	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -158,7 +155,19 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 		*/
 		clickHelper(currentSelect, lastSelect);
 		
+		titleText = ((ImageTextButton)v).getText().toString();
+		RightToContentHelper(titleText);
+		
 		lastSelect = currentSelect;
+	}
+	
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		//MasterActivity.tvHeaderTitle.setText(radapter.getItem(arg2).getItemname());
+		
+		titleText = radapter.getItem(arg2).getItemname();
+		RightToContentHelper(titleText);
+		//right_scroll.smoothScrollTo(0, 0); 
 	}
 	
 	private void clickHelper(int currentSelect, int lastSelect) {
@@ -198,4 +207,16 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 			}
 		}
 	}
+	
+	
+	private void RightToContentHelper(String title) {
+		
+		Message msg = MasterActivity2.mHandler.obtainMessage();
+		msg.what = 0;
+		msg.obj = title;
+		msg.sendToTarget();
+		
+		slidingMenu.showContent();
+	}
+	
 }
