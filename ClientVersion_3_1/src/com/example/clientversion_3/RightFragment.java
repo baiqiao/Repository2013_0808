@@ -20,7 +20,6 @@ import android.widget.ScrollView;
 import com.example.clientversion_3.adapter.RightAdapter;
 import com.example.clientversion_3.util.ListInScrollHelper;
 import com.example.clientversion_3.view.ImageTextButton;
-import com.example.clientversion_3.view.SlidingMenu;
 import com.example.clientversion_3_1.R;
 import com.example.clientversion_3_1.R.color;
 import com.example.clientversion_3_1.R.drawable;
@@ -41,12 +40,10 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	private int lastSelect = R.id.right_btn_recommend;
 	private RightAdapter radapter;
 	
-	private SlidingMenu slidingMenu;
 	private String titleText;
 	
-	public RightFragment(Context context, SlidingMenu slidingMenu) {
+	public RightFragment(Context context) {
 		this.context = context;
-		this.slidingMenu = slidingMenu;
 	}
 	
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -96,7 +93,7 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 		
 		if(v.getId() != currentSelect) {
 			if(event.getAction() == MotionEvent.ACTION_DOWN) {
-				((ImageTextButton)v).setTextColor(getResources().getColor(color.red));
+				((ImageTextButton)v).setTextColor(getResources().getColor(color.color_zuiqianhui));
 				switch(v.getId()){
 				case R.id.right_btn_recommend:
 					
@@ -216,7 +213,7 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 		msg.obj = title;
 		msg.sendToTarget();
 		
-		slidingMenu.showContent();
+		((MasterActivity2)getActivity()).getSlidingMenu().showContent();
 	}
 	
 }

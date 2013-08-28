@@ -19,10 +19,11 @@ public class MasterBaseActivity extends SlidingFragmentActivity {
 
         setBehindContentView(R.layout.left_frame);
         FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-        mFrag = new LeftFragment(this, this);
+        mFrag = new LeftFragment(this);
         t.replace(R.id.menu_frame, mFrag);
         t.commit();
 
+        
         slidingMenu = getSlidingMenu(); 
         //设置是左滑还是右滑，还是左右都可以滑 
         slidingMenu.setMode(SlidingMenu.LEFT_RIGHT); 

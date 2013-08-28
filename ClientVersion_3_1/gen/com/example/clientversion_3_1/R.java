@@ -16,13 +16,17 @@ public final class R {
         public static final int in_animation=0x7f040004;
         public static final int out=0x7f040005;
         public static final int out_animation=0x7f040006;
-        public static final int push_in=0x7f040007;
-        public static final int push_out=0x7f040008;
-        public static final int rotate_down=0x7f040009;
-        public static final int rotate_up=0x7f04000a;
-        public static final int shake=0x7f04000b;
-        public static final int zoomin=0x7f04000c;
-        public static final int zoomout=0x7f04000d;
+        public static final int push_down_in=0x7f040007;
+        public static final int push_down_out=0x7f040008;
+        public static final int push_in=0x7f040009;
+        public static final int push_out=0x7f04000a;
+        public static final int push_up_in=0x7f04000b;
+        public static final int push_up_out=0x7f04000c;
+        public static final int rotate_down=0x7f04000d;
+        public static final int rotate_up=0x7f04000e;
+        public static final int shake=0x7f04000f;
+        public static final int zoomin=0x7f040010;
+        public static final int zoomout=0x7f040011;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".

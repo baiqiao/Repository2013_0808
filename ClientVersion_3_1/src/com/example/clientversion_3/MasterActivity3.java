@@ -26,6 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -86,7 +87,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
        
        /*添加RightLayout,LeftLayout在BaseActivity中添加了*/
        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
-       RightFragment rightFrag = new RightFragment(this, super.slidingMenu);
+       RightFragment rightFrag = new RightFragment(this);
        slidingMenu.setSecondaryMenu(R.layout.right_frame);
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
@@ -201,7 +202,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
            public void run() {  
         	   
         	   addLists(originalNum);
-        	   
+        	   refreshView.setMore(true);
         	   Message msg = mHandler.obtainMessage();
         	   msg.what = LIST_DATA_SET;
         	   //msg.obj = options;
@@ -269,6 +270,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
                 	}
                 	else{
                 		refreshView.setMore(false);
+                		Toast.makeText(getApplicationContext(), "End of list", Toast.LENGTH_SHORT).show();
                 		isLoadingMore = false;
                 	}
                 }  
@@ -325,10 +327,10 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
 	@Override
 	public void onClick(View v) {
 		if(v.getId() == R.id.ivTitleBtnLeft){
-			super.slidingMenu.showMenu();
+			getSlidingMenu().showMenu();
 		}
 		else if(v.getId() == R.id.ivTitleBtnRigh) {
-			super.slidingMenu.showSecondaryMenu();
+			getSlidingMenu().showSecondaryMenu();
 		}
 	}
 

@@ -35,7 +35,6 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 	private TextView left_tv_personalsetting;
 	private TextView tv_username;
 	private Context context;
-	private Activity activity;
 	private Intent intent;
 	private Button left_btn_discuss;
 	
@@ -48,9 +47,8 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 
 	public LeftFragment() {}
 	
-	public LeftFragment(Context context, Activity activity) {
+	public LeftFragment(Context context) {
 		this.context = context;
-		this.activity = activity;
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,22 +89,22 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 			
 			intent = new Intent(context, RLoginActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.DownToUp(activity);
+			ActivityStartAnim.DownToUp(getActivity());
 		} 
 		else if (v.getId() == R.id.left_btn_attention) {
 			intent = new Intent(context, AttentionActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.DownToUp(activity);
+			ActivityStartAnim.DownToUp(getActivity());
 		} 
 		else if (v.getId() == R.id.left_tv_personalsetting) {
 			intent = new Intent(context, PersonalSettingActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.DownToUp(activity);
+			ActivityStartAnim.DownToUp(getActivity());
 		} 
 		else if (v.getId() == R.id.left_btn_discuss) {
 			intent = new Intent(context, AllCommentActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.DownToUp(activity);
+			ActivityStartAnim.DownToUp(getActivity());
 		}
 
 	}

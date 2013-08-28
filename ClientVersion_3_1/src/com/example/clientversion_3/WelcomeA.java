@@ -20,7 +20,7 @@ public class WelcomeA extends Activity {
 
 			@Override
 			public void run() {
-				Intent intent = new Intent(WelcomeA.this, MasterActivity3.class);
+				Intent intent = new Intent(WelcomeA.this, MasterActivity2.class);
 				startActivity(intent);
 				WelcomeA.this.finish();
 			}

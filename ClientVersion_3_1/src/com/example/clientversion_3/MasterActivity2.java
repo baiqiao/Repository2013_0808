@@ -79,7 +79,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
        /*LeftLayout在BaseActivity中添加了*/
        /*添加RightLayout*/
        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
-       RightFragment rightFrag = new RightFragment(this, super.slidingMenu);
+       RightFragment rightFrag = new RightFragment(this);
        slidingMenu.setSecondaryMenu(R.layout.right_frame);
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();
@@ -166,7 +166,7 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
            public void run() {  
         	   
         	   addLists(originalNum);
-        	   
+        	   pullListView.setMore(true);
         	   Message msg = mHandler.obtainMessage();
         	   msg.what = LIST_DATA_SET;
         	   //msg.obj = options;
@@ -291,11 +291,11 @@ public class MasterActivity2 extends MasterBaseActivity implements OnClickListen
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if(v.getId() == R.id.ivTitleBtnLeft){
-			super.slidingMenu.showMenu();
+			getSlidingMenu().showMenu();
 			
 		}
 		else if(v.getId() == R.id.ivTitleBtnRigh) {
-			super.slidingMenu.showSecondaryMenu();
+			getSlidingMenu().showSecondaryMenu();
 		}
 	}
 
