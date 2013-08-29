@@ -54,7 +54,7 @@ public class RLoginActivity extends Activity implements OnClickListener{
 			startActivity(intent);
 		}
 		else if(v.getId() == R.id.login_tv_losepwd) {
-			intent = new Intent(RLoginActivity.this, FindPasswordActivity.class);
+			intent = new Intent(RLoginActivity.this, ForgetPasswordActivity.class);
 			startActivity(intent);
 		}
 		else if(v.getId() == R.id.login_btn_tencent) {

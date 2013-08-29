@@ -62,6 +62,12 @@
         
         <activity android:name="com.example.clientversion_3.LoginActivity"> </activity>
         
+        <activity android:name="com.example.clientversion_3.MyDiscussActivity"> </activity>
+        
+        <activity android:name="com.example.clientversion_3.DiscussForMeActivity"> </activity>
+        
+        <activity android:name="com.example.clientversion_3.MailCheckActivity"> </activity>
+        
         <activity android:name="com.example.clientversion_3.PromoterDetailsActivity"> </activity>
         
         <activity android:name="com.example.clientversion_3.PersonalSettingActivity"> </activity>
@@ -84,7 +90,7 @@
         
         <activity android:name="com.example.clientversion_3.RegisterActivity" > </activity>
         
-        <activity android:name="com.example.clientversion_3.FindPasswordActivity" > </activity>
+        <activity android:name="com.example.clientversion_3.ForgetPasswordActivity" > </activity>
         
         
         <activity

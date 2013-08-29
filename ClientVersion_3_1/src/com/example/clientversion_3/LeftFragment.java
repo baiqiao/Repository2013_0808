@@ -1,7 +1,5 @@
 package com.example.clientversion_3;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,7 +21,6 @@ import com.example.clientversion_3_1.R;
 import com.galhttprequest.GalHttpRequest;
 import com.galhttprequest.GalHttpRequest.GalHttpLoadImageCallBack;
 
-@SuppressLint("ValidFragment")
 public class LeftFragment extends Fragment implements OnTouchListener,
 		OnClickListener {
 
@@ -45,15 +42,11 @@ public class LeftFragment extends Fragment implements OnTouchListener,
 	private String message;
 	
 
-	public LeftFragment() {}
-	
-	public LeftFragment(Context context) {
-		this.context = context;
-	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		context = getActivity().getApplicationContext();
 		View view = inflater.inflate(R.layout.left_menu, null);
 		view.setBackgroundColor(Color.WHITE);
 

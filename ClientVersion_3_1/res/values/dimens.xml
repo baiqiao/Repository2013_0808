@@ -4,8 +4,25 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     
+    <dimen name="item_vertical_margin">8.0dip</dimen>
+    
     <dimen name="updatebar_height">62.0dip</dimen>
     <dimen name="updatebar_content_height">60.0dip</dimen>
     <dimen name="updatebar_padding">10.0dip</dimen>
-
+    
+    <!-- left menu -->
+    <dimen name="left_vertical_margin">12dp</dimen>
+    <dimen name="left_hhorizontal_margin">12dp</dimen>
+    <dimen name="left_item_hight">44dp</dimen>
+    <dimen name="left_text_hight">24dp</dimen>
+    <dimen name="left_vertical_padding">3dp</dimen>
+    
+    
+    <!-- discuss item -->
+    <dimen name="discuss_item_vertical_margin">8dp</dimen>
+    <dimen name="discuss_item_hhorizontal_margin">12dp</dimen>
+    <dimen name="discuss_item_hhorizontal_padding">3dp</dimen>
+    <dimen name="discuss_item_pic_h">100dp</dimen>
+    <dimen name="discuss_item_pic_v">65dp</dimen>
+    
 </resources>

@@ -87,7 +87,7 @@ public class MasterActivity3 extends MasterBaseActivity implements OnClickListen
        
        /*添加RightLayout,LeftLayout在BaseActivity中添加了*/
        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
-       RightFragment rightFrag = new RightFragment(this);
+       RightFragment rightFrag = new RightFragment();
        slidingMenu.setSecondaryMenu(R.layout.right_frame);
        transaction.replace(R.id.right_frame, rightFrag);
        transaction.commit();

@@ -1,6 +1,5 @@
 package com.example.clientversion_3;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.example.clientversion_3_1.R;
 import com.example.clientversion_3_1.R.color;
 import com.example.clientversion_3_1.R.drawable;
 
-@SuppressLint("ValidFragment")
 public class RightFragment extends Fragment implements OnClickListener, OnTouchListener, OnItemClickListener{
 
 	
@@ -42,14 +40,11 @@ public class RightFragment extends Fragment implements OnClickListener, OnTouchL
 	
 	private String titleText;
 	
-	public RightFragment(Context context) {
-		this.context = context;
-	}
-	
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
     	
    
+    	context = getActivity().getApplicationContext();
         View view = inflater.inflate(R.layout.right_menu, null);
 		view.setBackgroundColor(Color.WHITE);
 		

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <color name="darkred">#cc0000</color>
+    <color name="darkblue">#1479ad</color>
     <color name="pink">#EE1289</color>
     <color name="color_hei">#ff000000</color>
     <color name="color_hei_8">#00000000</color>
@@ -110,11 +112,6 @@
     <color name="qzone_picviewer_loading_bg">#99000000</color>
     <color name="qzone_picviewer_loading_loaded">#ffffffff</color>
     <color name="qzone_picviewer_description">#ffe0e0e0</color>
-    
-    
-    
-    
-    
     
     
     

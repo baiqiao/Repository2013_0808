@@ -30,4 +30,68 @@
         parent="@android:style/Widget.EditText">   
         <item name="android:background">@drawable/selector_edittext_bg</item>    
     </style>
+    
+    
+    <!-- left fragment Font -->
+    
+    <style name="left_item_text_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    
+    <style name="left_top_text_Font">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/path_black</item>
+    </style>
+    
+    <style name="left_title_text_Font">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    
+    <style name="left_exit_text_Font">
+        <item name="android:textSize">20.0sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="left_recharge_text_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    
+    <!-- right fragment Font -->
+    
+    
+    <!-- discuss item Font -->
+    <style name="discuss_uesrname_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/darkblue</item>
+    </style>
+    
+    <style name="discuss_discusstype_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    
+    <style name="discuss_text_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/path_black</item>
+    </style>
+    
+    <style name="discuss_time_Font">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">@color/med_gray</item>
+    </style>
+    
+    <style name="discuss_del_Font">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">@color/darkblue</item>
+    </style>
+    
+    <style name="discuss_num_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/darkred</item>
+    </style>
+    
 </resources>

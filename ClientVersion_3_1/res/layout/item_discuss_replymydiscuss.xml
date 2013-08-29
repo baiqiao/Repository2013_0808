@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/discuss_item_hhorizontal_margin"
+        android:layout_marginRight="@dimen/discuss_item_hhorizontal_margin"
+        android:layout_marginTop="@dimen/item_vertical_margin"
+        android:background="@drawable/perm_comment_button" >
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/discuss_item_hhorizontal_margin"
+                android:layout_marginRight="@dimen/discuss_item_hhorizontal_margin" >
+
+                <TextView
+                    android:id="@+id/discuss_tv_user_name"
+                    style="@style/discuss_uesrname_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/discuss_item_vertical_margin"
+                    android:text="小强" />
+
+                <TextView
+                    android:id="@+id/discuss_tv_type"
+                    style="@style/discuss_discusstype_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/discuss_tv_user_name"
+                    android:layout_marginLeft="@dimen/discuss_item_hhorizontal_padding"
+                    android:layout_toRightOf="@+id/discuss_tv_user_name"
+                    android:text="回复我的评论" />
+
+                <TextView
+                    android:id="@+id/discuss_tv_reply_text"
+                    style="@style/discuss_text_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/discuss_tv_user_name"
+                    android:layout_marginTop="@dimen/discuss_item_vertical_margin"
+                    android:text="什么什么说点什么，完全扯淡。怎么能是这样的。" />
+
+                <TextView
+                    android:id="@+id/discuss_tv_reply_time"
+                    style="@style/discuss_time_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/discuss_tv_reply_text"
+                    android:layout_marginTop="@dimen/discuss_item_vertical_margin"
+                    android:text="12月16日  14: 21" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl1"
+            android:layout_marginTop="@dimen/discuss_item_vertical_margin"
+            android:background="@drawable/comment_bubble" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/discuss_item_hhorizontal_margin"
+                android:layout_marginRight="@dimen/discuss_item_hhorizontal_margin"
+                android:layout_marginTop="@dimen/discuss_item_vertical_margin" >
+
+                <TextView
+                    android:id="@+id/discuss_tv_my_discuss"
+                    style="@style/discuss_text_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="@dimen/discuss_item_vertical_margin"
+                    android:layout_marginTop="@dimen/discuss_item_vertical_margin"
+                    android:text="我: 希望自己这点小小力量能骑到作用，愿你们安好。" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dip"
+                    android:layout_below="@+id/discuss_tv_my_discuss" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

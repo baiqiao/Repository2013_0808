@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/feed_item_bg"
+    android:orientation="vertical" >
+    
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/mailcheck_ibtn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/red"
+            android:focusable="true" 
+            android:textSize="22sp"
+            android:text="邮箱验证" />
+
+        
+        
+    </RelativeLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:id="@+id/mailcheck_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="您的邮箱519******com\n会收到一条含有6位验证码的邮件"/>
+
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/white">
+            
+            <EditText
+	            android:id="@+id/mailcheck_et"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:background="@color/white"
+	            android:inputType="textEmailAddress"
+	            android:textCursorDrawable="@null"
+	            android:layout_marginLeft="16dp"
+	            android:textSize="16sp"
+	            android:hint="请输入6位数验证码" >
+	
+	        </EditText>
+        </LinearLayout>
+        
+        
+        <Button
+	        android:id="@+id/mialcheck_btn_resetpwd"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:background="@drawable/icon_red"
+	        android:textColor="#ffffff"
+	        android:textSize="20sp"
+	        android:text="重置密码" />
+        
+        <Button
+	        android:id="@+id/mailcheck_btn_resend"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="12dp"
+	        android:background="@drawable/selector_mailckeck_resend"
+	        android:textColor="#000000"
+	        android:textSize="20sp"
+	        android:text="重新发送验证码" />
+        
+    </LinearLayout>
+
+    
+
+</LinearLayout>
