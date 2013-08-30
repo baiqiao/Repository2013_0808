@@ -46,7 +46,7 @@ public class LeftFragment2 extends Fragment implements OnTouchListener,
 		
 		view.findViewById(R.id.left_btn_i_discuss).setOnClickListener(this);
 		view.findViewById(R.id.left_btn_discuss_i).setOnClickListener(this);
-		
+		view.findViewById(R.id.left_tv_personalsetting).setOnClickListener(this);
 		
 		return view;
 	}
@@ -80,6 +80,10 @@ public class LeftFragment2 extends Fragment implements OnTouchListener,
 		
 		if(v.getId() == R.id.left_btn_discuss_i) {
 			intent = new Intent(context, DiscussForMeActivity.class);
+			startActivity(intent);
+		}
+		if(v.getId() == R.id.left_tv_personalsetting) {
+			intent = new Intent(context, PersonalSettingActivity1.class);
 			startActivity(intent);
 		}
 		
