@@ -31,6 +31,17 @@
         <item name="android:background">@drawable/selector_edittext_bg</item>    
     </style>
     
+    <!-- master page item  -->
+    <style name="masterpage_item_projectname_text_Font">
+        <item name="android:textSize">17.0sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="masterpage_item_projectstatus_text_Font">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
     
     <!-- left fragment Font -->
     

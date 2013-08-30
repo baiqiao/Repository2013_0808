@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
@@ -11,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3_1.R;
 
-public class DiscussForMeActivity extends Activity{
+public class DiscussForMeActivity extends Activity implements OnClickListener{
 
 	private ListView discussforme_list;
 	private DiscussFormeAdapter discussFormeAdapter;
@@ -30,10 +32,11 @@ public class DiscussForMeActivity extends Activity{
 		setContentView(R.layout.activity_discussforme);
 		inflater = getLayoutInflater();
 		
+		this.findViewById(R.id.discussforme_ibtn_back).setOnClickListener(this);
+		
 		discussforme_list = (ListView)this.findViewById(R.id.discussforme_list);
 		discussFormeAdapter = new DiscussFormeAdapter();
 		discussforme_list.setDividerHeight(0);
-		discussforme_list.setEnabled(false);
 		discussforme_list.setAdapter(discussFormeAdapter);
 	}
 
@@ -52,6 +55,12 @@ public class DiscussForMeActivity extends Activity{
 		@Override
 		public long getItemId(int position) {
 			return 0;
+		}
+		
+		@Override
+		public boolean isEnabled(int position) {
+			//return super.isEnabled(position);
+			return false;
 		}
 
 		@Override
@@ -138,6 +147,15 @@ public class DiscussForMeActivity extends Activity{
 			TextView tv_getsupportnum;
 			TextView tv_getmoneynum;
 			ImageView iv_projectpic;
+		}
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.discussforme_ibtn_back) {
+			this.finish();
+			//ActivityStartAnim.TopToBottom(this);
 		}
 		
 	}

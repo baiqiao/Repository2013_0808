@@ -1,9 +1,11 @@
 package com.example.clientversion_3;
 
 import android.app.Activity;
+import android.app.SearchManager.OnCancelListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
@@ -11,9 +13,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3_1.R;
 
-public class MyDiscussActivity extends Activity {
+public class MyDiscussActivity extends Activity implements OnClickListener {
 
 	private ListView my_discuss_list;
 	private MyDiscussAdapter myDiscussAdapter;
@@ -25,10 +28,12 @@ public class MyDiscussActivity extends Activity {
 		setContentView(R.layout.activity_mydiscuss);
 		inflater = getLayoutInflater();
 		
+		this.findViewById(R.id.mydiscuss_ibtn_back).setOnClickListener(this);
+		
 		my_discuss_list = (ListView)this.findViewById(R.id.my_discuss_list);
 		myDiscussAdapter = new MyDiscussAdapter();
 		my_discuss_list.setDividerHeight(0);
-		my_discuss_list.setEnabled(false);
+		//my_discuss_list.setEnabled(false);
 		my_discuss_list.setAdapter(myDiscussAdapter);
 	}
 	
@@ -47,6 +52,12 @@ public class MyDiscussActivity extends Activity {
 		@Override
 		public long getItemId(int position) {
 			return 0;
+		}
+
+		@Override
+		public boolean isEnabled(int position) {
+			//return super.isEnabled(position);
+			return false;
 		}
 
 		@Override
@@ -85,6 +96,15 @@ public class MyDiscussActivity extends Activity {
 			TextView discuss_pro_tv_getsupportnum;
 			TextView discuss_pro_tv_getmoneynum;
 			ImageView discuss_pro_iv_projectpic;
+		}
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.mydiscuss_ibtn_back) {
+			this.finish();
+			//ActivityStartAnim.TopToBottom(this);
 		}
 		
 	}
