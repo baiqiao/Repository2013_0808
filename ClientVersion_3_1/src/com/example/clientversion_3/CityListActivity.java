@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,7 +27,7 @@ public class CityListActivity extends Activity {
 	private int cityCount = 0;
 
 	private ListView lv;
-
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_citylist);
@@ -38,15 +39,10 @@ public class CityListActivity extends Activity {
 
 		MyDatabase myDB = new MyDatabase(this);
 		Cursor cCity = myDB.getCities(provinceid);
+		
 		cityCount = cCity.getCount();
 		if (cityCount == 0) {
-			if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 0) {
-				ChangePersonalMaterialActivity.change_btn_liveaddress
-						.setText(provincename);
-			} else if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 1) {
-				ChangePersonalMaterialActivity.change_btn_workaddress
-						.setText(provincename);
-			}
+			
 			CityListActivity.this.finish();
 
 		}
@@ -66,15 +62,7 @@ public class CityListActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
-				if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 0) {
-					ChangePersonalMaterialActivity.change_btn_liveaddress
-							.setText(provincename + "  " + citys[position][1]);
-				} else if (ChangePersonalMaterialActivity.ADDRESS_FLOG == 1) {
-					ChangePersonalMaterialActivity.change_btn_workaddress
-							.setText(provincename + "  " + citys[position][1]);
-				}
-
-				CityListActivity.this.finish();
+				
 			}
 		});
 	}

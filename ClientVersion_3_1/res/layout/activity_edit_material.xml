@@ -13,7 +13,7 @@
         android:paddingTop="8dp" >
 
         <ImageButton
-            android:id="@+id/title_perset_ibtn_back"
+            android:id="@+id/editmat_ibtn_topbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -32,7 +32,7 @@
             android:textSize="24sp" />
 
         <ImageButton
-            android:id="@+id/title_perset_ibtn_confirm"
+            android:id="@+id/editmat_ibtn_topbar_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -58,17 +58,19 @@
             android:orientation="vertical" >
 
             <RelativeLayout
+                android:id="@+id/editmat_rl_changeheadgrahp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/white" >
+                android:clickable="true"
+                android:background="@drawable/selector_editmaterial_relativelayout" >
 
                 <ImageView
-                    android:id="@+id/detail_login_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/editmat_iv_headgraph"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_centerVertical="true"
                     android:layout_margin="12dp"
                     android:src="@drawable/prosonal_setting_headgraph"
@@ -79,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/detail_login_name"
+                    android:layout_toRightOf="@+id/editmat_iv_headgraph"
                     android:text="修改头像"
                     android:textColor="@color/color_qianhui" />
 
@@ -168,13 +170,14 @@
                     android:text="所在地"
                     android:textSize="16sp" />
 
-                <EditText
+                <Button
+                    android:id="@+id/editmat_btn_liveaddress"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/detail_login_name"
-                    android:background="#00000000"
+                    android:background="@drawable/selector_personalsetting_button"
                     android:text="四川  成都"
                     android:textColor="@color/color_qianhui"
                     android:textSize="16sp" />

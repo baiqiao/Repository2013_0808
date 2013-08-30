@@ -13,7 +13,7 @@
         android:paddingTop="8dp" >
 
         <ImageButton
-            android:id="@+id/title_perset_ibtn_back"
+            android:id="@+id/detailmat_ibtn_topbar_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -32,7 +32,7 @@
             android:textSize="24sp" />
 
         <ImageButton
-            android:id="@+id/detail_ibtn_title_right"
+            android:id="@+id/detailmat_ibtn_topbar_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -10,14 +10,6 @@
     <dimen name="updatebar_content_height">60.0dip</dimen>
     <dimen name="updatebar_padding">10.0dip</dimen>
     
-    <!-- master page item -->
-    <dimen name="masterpage_item_hight">230dp</dimen>
-    <dimen name="masterpage_item_info_hight">84dp</dimen>
-    <dimen name="masterpage_item_info_projectname_hight">28dp</dimen>
-    <dimen name="masterpage_item_info_progressbar_hight">10dp</dimen>
-    <dimen name="masterpage_item_info_status_words_hight">18dp</dimen>
-    <dimen name="masterpage_item_info_pic_hight">28dp</dimen>
-    
     <!-- left menu -->
     <dimen name="left_vertical_margin">12dp</dimen>
     <dimen name="left_hhorizontal_margin">12dp</dimen>
@@ -32,7 +24,5 @@
     <dimen name="discuss_item_hhorizontal_padding">3dp</dimen>
     <dimen name="discuss_item_pic_h">100dp</dimen>
     <dimen name="discuss_item_pic_v">65dp</dimen>
-    
-    
     
 </resources>

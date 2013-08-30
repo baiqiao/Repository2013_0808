@@ -14,7 +14,7 @@ import com.example.clientversion_3_1.R;
 
 public class DetailMaterialActivity extends Activity implements OnClickListener{
 	
-	private ImageButton detail_ibtn_title_right;
+	private ImageButton detailmat_ibtn_topbar_right,detailmat_ibtn_topbar_left;
 	private Intent intent;
 	private Context context;
 
@@ -31,17 +31,23 @@ public class DetailMaterialActivity extends Activity implements OnClickListener{
 	}
 	
 	private void initView(){
-		detail_ibtn_title_right = (ImageButton)this.findViewById(R.id.detail_ibtn_title_right);
+		detailmat_ibtn_topbar_right = (ImageButton)this.findViewById(R.id.detailmat_ibtn_topbar_right);
+		detailmat_ibtn_topbar_left = (ImageButton)this.findViewById(R.id.detailmat_ibtn_topbar_left);
 		
-		detail_ibtn_title_right.setOnClickListener(this);
+		detailmat_ibtn_topbar_right.setOnClickListener(this);
+		detailmat_ibtn_topbar_left.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.detail_ibtn_title_right:
+		case R.id.detailmat_ibtn_topbar_right:
 			intent = new Intent(context,EditMaterialActivity.class);
 			startActivity(intent);
+			break;
+			
+		case R.id.detailmat_ibtn_topbar_left:
+			this.finish();
 			break;
 
 		default:

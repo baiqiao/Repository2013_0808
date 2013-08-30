@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3_1.R;
 
 public class LeftFragment2 extends Fragment implements OnTouchListener,
@@ -47,7 +46,7 @@ public class LeftFragment2 extends Fragment implements OnTouchListener,
 		
 		view.findViewById(R.id.left_btn_i_discuss).setOnClickListener(this);
 		view.findViewById(R.id.left_btn_discuss_i).setOnClickListener(this);
-		view.findViewById(R.id.left_btn_personalsetting).setOnClickListener(this);
+		view.findViewById(R.id.left_tv_personalsetting).setOnClickListener(this);
 		
 		return view;
 	}
@@ -77,18 +76,15 @@ public class LeftFragment2 extends Fragment implements OnTouchListener,
 		if(v.getId() == R.id.left_btn_i_discuss) {
 			intent = new Intent(context, MyDiscussActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.BottomToTop(getActivity());
 		}
 		
 		if(v.getId() == R.id.left_btn_discuss_i) {
 			intent = new Intent(context, DiscussForMeActivity.class);
 			startActivity(intent);
-			ActivityStartAnim.BottomToTop(getActivity());
 		}
-		if(v.getId() == R.id.left_btn_personalsetting) {
+		if(v.getId() == R.id.left_tv_personalsetting) {
 			intent = new Intent(context, PersonalSettingActivity1.class);
 			startActivity(intent);
-			ActivityStartAnim.BottomToTop(getActivity());
 		}
 		
 	}
