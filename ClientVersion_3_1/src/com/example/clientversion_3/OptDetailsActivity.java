@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.clientversion_3.entity.ProjectInfo;
+import com.example.clientversion_3.util.ActivityStartAnim;
 import com.example.clientversion_3_1.R;
 import com.example.clientversion_3_1.R.color;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -128,6 +129,7 @@ public class OptDetailsActivity extends Activity implements OnClickListener, OnT
 		}
 		else if(v.getId() == R.id.optdetails_ibtn_back) {
 			this.finish();
+			ActivityStartAnim.LeftToRightClose(this);
 		}
 	}
 	@Override

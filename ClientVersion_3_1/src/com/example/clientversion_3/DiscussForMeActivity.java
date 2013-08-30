@@ -67,32 +67,19 @@ public class DiscussForMeActivity extends Activity implements OnClickListener{
 		public View getView(int position, View convertView, ViewGroup parent) {
 			final ViewHolder holder;
 			
-			if(position == 1){
-				
-				if (convertView == null) {
+			if(convertView == null){
+				holder = new ViewHolder();
+				if (position == 1) {
 					convertView = inflater.inflate(R.layout.item_discuss_replymydiscuss, parent, false);
-					holder = new ViewHolder();
-					
 					holder.tv_user_name = (TextView)convertView.findViewById(R.id.discuss_tv_user_name);
 					holder.tv_type = (TextView)convertView.findViewById(R.id.discuss_tv_type);
 					holder.tv_discusstext = (TextView)convertView.findViewById(R.id.discuss_tv_reply_text);
 					holder.tv_discuss_time = (TextView)convertView.findViewById(R.id.discuss_tv_reply_time);
 					holder.tv_my_discuss = (TextView)convertView.findViewById(R.id.discuss_tv_my_discuss);
 					
-					convertView.setTag(holder);
 				} 
 				else {
-					holder = (ViewHolder) convertView.getTag();
-				}
-				
-				holder.tv_user_name.setText("Ð¡Ç¿"+position);
-			}
-			
-			else {
-				if (convertView == null) {
 					convertView = inflater.inflate(R.layout.item_discuss_discussproject, parent, false);
-					holder = new ViewHolder();
-					
 					holder.tv_user_name = (TextView)convertView.findViewById(R.id.discuss_pro_tv_user_name);
 					holder.tv_type = (TextView)convertView.findViewById(R.id.discuss_pro_tv_type);
 					holder.tv_discusstext = (TextView)convertView.findViewById(R.id.discuss_pro_tv_discusstext);
@@ -103,14 +90,15 @@ public class DiscussForMeActivity extends Activity implements OnClickListener{
 					holder.tv_getmoneynum = (TextView)convertView.findViewById(R.id.discuss_pro_tv_getmoneynum);
 					holder.iv_projectpic = (ImageView)convertView.findViewById(R.id.discuss_pro_iv_projectpic);
 					
-					convertView.setTag(holder);
 				} 
-				else {
-					holder = (ViewHolder) convertView.getTag();
-				}
-				
-				holder.tv_user_name.setText("ÎûÎû¹þ¹þ"+ position);
+				convertView.setTag(holder);
 			}
+			else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			
+			//holder.tv_user_name.setText("ÎûÎû¹þ¹þ"+ position);
+			
 			
 			return convertView;
 		}
@@ -155,9 +143,7 @@ public class DiscussForMeActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		if(v.getId() == R.id.discussforme_ibtn_back) {
 			this.finish();
-			//ActivityStartAnim.TopToBottom(this);
+			ActivityStartAnim.TopToBottom(this);
 		}
-		
 	}
-	
 }

@@ -27,6 +27,13 @@ public class ActivityStartAnim {
 		} 
 	}
 	
+	public static void LeftToRightClose(Activity activity) {
+		int version =  Integer.valueOf(android.os.Build.VERSION.SDK);       
+		if(version > 5 ){         
+			activity.overridePendingTransition(R.anim.left_to_right_close_in, R.anim.left_to_right_close_out);       
+		} 
+	}
+	
 	public static void RightToLeft2(Activity activity) {
 		int version =  Integer.valueOf(android.os.Build.VERSION.SDK);       
 		if(version > 5 ){         
@@ -51,7 +58,7 @@ public class ActivityStartAnim {
 	public static void TopToBottom(Activity activity) {
 		int version =  Integer.valueOf(android.os.Build.VERSION.SDK);       
 		if(version > 5 ){         
-			activity.overridePendingTransition(R.anim.push_down_in, R.anim.push_down_in);       
+			activity.overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);       
 		} 
 	}
 	

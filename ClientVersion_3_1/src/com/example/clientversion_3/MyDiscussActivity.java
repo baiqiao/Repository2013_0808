@@ -104,7 +104,7 @@ public class MyDiscussActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		if(v.getId() == R.id.mydiscuss_ibtn_back) {
 			this.finish();
-			//ActivityStartAnim.TopToBottom(this);
+			ActivityStartAnim.TopToBottom(this);
 		}
 		
 	}
