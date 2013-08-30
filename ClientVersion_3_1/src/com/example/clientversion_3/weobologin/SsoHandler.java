@@ -22,6 +22,7 @@ import com.weibo.sdk.android.Weibo;
 import com.weibo.sdk.android.WeiboAuthListener;
 import com.weibo.sdk.android.WeiboDialogError;
 import com.weibo.sdk.android.util.Utility;
+
 /**
  * 该类用于处理sso 认证功能，通过sso，无需输入用户名、密码即可以通过微博账号访问经过授权的第三方应用，\r\n
  * 使用SSO登录前，请检查手机上是否已经安装新浪微博客户端，目前仅3.0.0及以上微博客户端版本支持SSO；
